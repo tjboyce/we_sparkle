@@ -21,7 +21,7 @@ if (process.env.MONGODB_URI) {
 mongoose.connect(mongoURI);
 
 mongoose.connection.once('open', () => {
-  console.log('Mongo connected');
+  console.log('Mongo connected on DB:', mongoURI, 'env:', process.env.MONGODB_URI);
 });
 
 mongoose.connection.on('error', (err) => {
