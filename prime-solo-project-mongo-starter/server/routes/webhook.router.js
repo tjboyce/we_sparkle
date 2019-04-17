@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const processMessage = require('../modules/processMessage');
+// const processMessage = require('../modules/processMessage');
 
 /**
  * GET route template
@@ -38,7 +38,7 @@ router.get('/', (req, res) => {
 //this is testing the handshake with facebook. 
 //This code should be moved to a separate file once webhook is established. 
 router.post('/', (req, res) => {
-    console.log('Webhook POST router hit with info:', req.body);
+    console.log('Webhook POST router hit with info:', req.body.entry[0].messaging[0].message.text);
 
     let body = req.body;
 
@@ -49,7 +49,9 @@ router.post('/', (req, res) => {
         body.entry.forEach( entry => {
             entry.messaging.forEach(event => {
                 if (event.message && event.message.text) {
-                    processMessage(event);
+                    // processMessage(event);
+                    console.log('message success');
+                    
                 }
             })
         });
