@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-// const processMessage = require('../modules/processMessage');
+const processMessage = require('../modules/processMessage');
 
 /**
  * GET route template
@@ -41,6 +41,7 @@ router.post('/', (req, res) => {
     console.log('Webhook POST router hit with info:', req.body.entry[0].messaging[0].message.text);
 
     let body = req.body;
+    console.log(body);
 
     // Checks this is an event from a page subscription
     if (body.object === 'page') {
@@ -48,10 +49,9 @@ router.post('/', (req, res) => {
         // Iterates over each entry - there may be multiple if batched
         body.entry.forEach( entry => {
             entry.messaging.forEach(event => {
-                if (event.message && event.message.text) {
-                    // processMessage(event);
+                if (req.body.entry[0].messaging[0].message.text) {
+                    processMessage(event);
                     console.log('message success');
-                    
                 }
             })
         });
