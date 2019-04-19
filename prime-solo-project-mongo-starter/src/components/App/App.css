@@ -1,6 +1,9 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0px;
+    background-image: url('../fantasticglams.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .alert {

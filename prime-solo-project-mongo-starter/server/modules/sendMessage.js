@@ -36,13 +36,15 @@ const intents = {
 
 }
 
+let service = '';
+
 handleService = (text, whatService) => {
     const textArray = text.toLowerCase().split(' ');
     textArray.forEach(word => {
         word = word.replace(/[^a-zA-Z0-9]/g, '');
         whatService.forEach(serviceType => {
             if (word == serviceType) {
-                service = word;
+                 service = word;
             }
         })
     })
