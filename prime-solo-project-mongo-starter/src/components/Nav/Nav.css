@@ -9,10 +9,9 @@
 
 .nav {
   /* overflow: hidden; */
-  background-image: url("fantasticglams.jpg");
+  /* background-image: url("fantasticglams.jpg"); */
   background-repeat: no-repeat;
   background-size: cover;
-  height: 400px;
 }
 
 .nav-link {
