@@ -1,34 +1,37 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
 // It doesn't dispatch any redux actions or display any part of redux state
 // or even care what the redux state is, so it doesn't need 'connect()'
 
-class AboutPage extends Component{
-
-  handleClick = () => {
-    console.log('Webook button hit.');
-    this.props.dispatch({ type: 'WEBHOOK' });
-  };
+class AboutPage extends Component {
 
   render() {
     return (
-    <div>
       <div>
-        <p>
-          This about page is for anyone to read!
-        </p> <br />
-        <button onClick={this.handleClick}>Webhook Test</button>
+
+        <div>
+          <h1>
+            Welcome to We-Sparkle Inc.
+        </h1>
+        </div>
+
+        <br />
+
+        <div>
+          <p>
+            This is an Admin web-site for hair salon owners or managers to edit, add, and delete common FAQs.
+          </p>
+        </div>
+
+        
+
+
+
       </div>
-    </div>
     );
   }
 }
 
-const mapStateToProps = (reduxState) => {
-  return reduxState;
-}
-
-export default connect( mapStateToProps )( AboutPage );
+export default AboutPage;
