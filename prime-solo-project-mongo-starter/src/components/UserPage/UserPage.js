@@ -2,6 +2,7 @@ import React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
+import AddNewItem from'../AddService/AddService'
 import './UserPage.css'
 import axios from 'axios';
 // this could also be written with destructuring parameters as:
@@ -43,28 +44,29 @@ class UserPage extends Component {
         <h1 id="welcome">
           Welcome, {this.props.user.username}!
     </h1>
-
-        <div>
-          <section>
-            {/*for demo wrap*/}
-            <h1>Services</h1>
-            <div className="tbl-header">
-              <table cellPadding={0} cellSpacing={0} border={0}>
-                <thead>
-
-                  <tr>
-                    <th>Service</th>
-                    <th>Cost</th>
-                    <th>Time</th>
-                    <th>Cruelty Free</th>
-                    <th>Edit/Delete</th>
-                  </tr>
-                </thead>
-              </table>
-            </div>
-            <div className="tbl-content">
-              <table cellPadding={0} cellSpacing={0} border={0}>
-                <tbody>
+    <button>Add Item</button>
+  
+    <div>
+      <section>
+        {/*for demo wrap*/}
+        <h1>Services</h1>
+        <div className="tbl-header">
+          <table cellPadding={0} cellSpacing={0} border={0}>
+            <thead>
+             
+              <tr>
+                <th>Service</th>
+                <th>Cost</th>
+                <th>Time</th>
+                <th>Cruelty Free</th>
+                <th>Edit/Delete</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div className="tbl-content">
+          <table cellPadding={0} cellSpacing={0} border={0}>
+            <tbody>
                   {this.props.adminReducer.map((item) => (
                     <tr key={item._id}>
                       <td>{item.service}</td>
@@ -91,8 +93,10 @@ class UserPage extends Component {
           {/* follow me template */}
 
         </div>
-      </div>
-    )
+     <AddNewItem />
+    
+    </div>
+   )
   }
 }
 
