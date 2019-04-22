@@ -37,3 +37,9 @@
 .nav-right {
   float: right;
 }
+
+button{
+  border: none;
+ background: rgba(204, 204, 204, 0);
+ color: white;
+}

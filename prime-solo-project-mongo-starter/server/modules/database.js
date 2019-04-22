@@ -12,10 +12,12 @@ let mongoURI = process.env.MONGODB_URI;
 if (process.env.MONGODB_URI) {
   // Heroku will provide this when deployed
   // use the string value of the environment variable
-  mongoURI = process.env.MONGODB_URI;
+  mongoURI = 'mongodb://localhost:27017/sparkle';
+  // mongoURI = process.env.MONGODB_URI;
 } else {
   // use the local database server
-  mongoURI = 'mongodb://localhost:27017/prime_app';
+  // mongoURI = 'mongodb://localhost:27017/sparkle';
+  mongoURI = process.env.MONGODB_URI;
 }
 
 mongoose.connect(mongoURI);
