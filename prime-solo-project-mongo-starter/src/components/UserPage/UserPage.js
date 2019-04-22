@@ -11,10 +11,10 @@ class UserPage extends Component {
     this.props.dispatch ({type: 'FETCH_INFO'})
   }
 
-  deleteService = () => {
-    console.log('deleteService is running');
+  deleteService = (id) => {
+    console.log('deleteService is running', id);
   }
-  
+
   render (){
     
     return (
@@ -48,16 +48,14 @@ class UserPage extends Component {
           <table cellPadding={0} cellSpacing={0} border={0}>
             <tbody>
                   {this.props.adminReducer.map((item) => (
-                   
-                    
-                    <tr>
+                    <tr key={item._id}>
                       <td>{item.service}</td>
                       <td>${item.cost}</td>
                       <td>{item.time}</td>
                       <td>{item.crueltyfree}</td>
                     
                       
-                      <td><button className="editButton">Edit</button><button onClick={this.deleteService} className="deleteButton">Delete</button></td>
+                      <td><button className="editButton">Edit</button><button onClick={this.deleteService(item._id)} className="deleteButton">Delete</button></td>
 
                     </tr>
                   ))}
