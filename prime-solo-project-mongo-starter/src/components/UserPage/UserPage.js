@@ -12,6 +12,9 @@ class UserPage extends Component {
     this.props.dispatch({ type: 'FETCH_INFO' })
   }
 
+  //This will delete a row from the admin table when the delete button is clicked.
+  //Additionally, a warning will pop up allowing the user to cancel their delete request or press OK to confirm
+  //The function is curried so that it doesn't run the first time the page loads.
   deleteService = (id) => {
     return () => {
       const r = window.confirm("Are you sure you want to delete this service item?");
@@ -21,11 +24,12 @@ class UserPage extends Component {
           method: 'DELETE',
           url: `/admin/${id}`
         })
-          .then((response) => {
+          .then(() => {
+            //get list of services from the database
             this.props.dispatch({ type: 'FETCH_INFO' })
           })
           .catch((error) => {
-            console.log('Bad stuff happened! Oh no!', error);
+            console.log('This is the error:', error);
           })
       }
     }
@@ -34,10 +38,8 @@ class UserPage extends Component {
   render() {
 
     return (
-
-
+      
       <div>
-
         <h1 id="welcome">
           Welcome, {this.props.user.username}!
     </h1>
