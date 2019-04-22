@@ -11,6 +11,10 @@ class UserPage extends Component {
     this.props.dispatch ({type: 'FETCH_INFO'})
   }
 
+  deleteService = () => {
+    console.log('deleteService is running');
+  }
+  
   render (){
     
     return (
@@ -53,7 +57,7 @@ class UserPage extends Component {
                       <td>{item.crueltyfree}</td>
                     
                       
-                      <td><button className="editButton">Edit</button><button className="deleteButton">Delete</button></td>
+                      <td><button className="editButton">Edit</button><button onClick={this.deleteService} className="deleteButton">Delete</button></td>
 
                     </tr>
                   ))}
