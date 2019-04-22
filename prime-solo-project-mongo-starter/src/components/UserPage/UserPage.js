@@ -3,6 +3,7 @@ import {Component} from 'react';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './UserPage.css'
+import axios from 'axios';
 // this could also be written with destructuring parameters as:
 // const UserPage = ({ user }) => (
 // and then instead of `props.user.username` you could use `user.username`
@@ -13,6 +14,16 @@ class UserPage extends Component {
 
   deleteService = (id) => {
     console.log('deleteService is running', id);
+    axios({
+      method: 'DELETE',
+      url: `/admin/${id}`
+    })
+      .then((response) => {
+        console.log('back from database', response)
+      })
+      .catch((error) => {
+        console.log('Bad stuff happened! Oh no!', error);
+      })
   }
 
   render (){

@@ -22,4 +22,9 @@ router.get('/', rejectUnauthenticated, async (req, res) => {
 
 })
 
+router.delete('/:id', rejectUnauthenticated, async (req, res) => {
+    console.log('in delete route');
+
+})
+
 module.exports = router;
