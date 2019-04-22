@@ -1,6 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const processMessage = require('../modules/processMessage');
+require('../modules/database');
+
+const mongodb = require('mongodb')
+const MongoClient = mongodb.MongoClient;
+const dbName = "sparkle"
+const url = 'mongodb://localhost:27017'
+const client = new MongoClient(url, {
+    useNewUrlParser: true
+})
 
 /**
  * GET route template
@@ -14,6 +23,8 @@ router.get('/', (req, res) => {
     let mode = req.query['hub.mode'];
     let token = req.query['hub.verify_token'];
     let challenge = req.query['hub.challenge'];
+
+
 
     // Checks if a token and mode is in the query string of the request
     if (mode && token) {
@@ -37,17 +48,26 @@ router.get('/', (req, res) => {
  */
 //this is testing the handshake with facebook. 
 //This code should be moved to a separate file once webhook is established. 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     console.log('Webhook POST router hit with info:', req.body.entry[0].messaging[0].message.text);
-
     let body = req.body;
     console.log(body);
+
+    await client.connect();
+    const database = client.db(dbName);
+    const result = await database.collection('services').find({}).toArray();
+    console.log('take it or leave it this is what we got: ', result);
+    let thisObject = {};
+    for (object of result) {
+        thisObject[object.service] = object;
+    }
+    console.log('Service Details form Database:', thisObject);
 
     // Checks this is an event from a page subscription
     if (body.object === 'page') {
 
         // Iterates over each entry - there may be multiple if batched
-        body.entry.forEach( entry => {
+        body.entry.forEach(entry => {
             entry.messaging.forEach(event => {
                 if (req.body.entry[0].messaging[0].message.text) {
                     processMessage(event);
@@ -61,10 +81,9 @@ router.post('/', (req, res) => {
     } else {
         // Returns a '404 Not Found' if event is not from a page subscription
         console.log('is this the 404');
-        
+
         res.sendStatus(404);
     }
-
-});
+})
 
 module.exports = router;
