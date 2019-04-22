@@ -12,6 +12,7 @@ class UserPage extends Component {
   }
 
   render (){
+    
     return (
 
   
@@ -28,6 +29,7 @@ class UserPage extends Component {
         <div className="tbl-header">
           <table cellPadding={0} cellSpacing={0} border={0}>
             <thead>
+             
               <tr>
                 <th>Service</th>
                 <th>Cost</th>
@@ -41,27 +43,27 @@ class UserPage extends Component {
         <div className="tbl-content">
           <table cellPadding={0} cellSpacing={0} border={0}>
             <tbody>
-              <tr>
+                  {this.props.adminReducer.map((item) => (
+                   
+                    
+                    <tr>
+                      <td>{item.service}</td>
+                      <td>${item.cost}</td>
+                      <td>{item.time}</td>
+                      <td>{item.crueltyfree}</td>
+                    
+                      
+                      <td><button className="editButton">Edit</button><button className="deleteButton">Delete</button></td>
+
+                    </tr>
+                  ))}
+              {/* <tr>
                 <td>Haircut</td>
                 <td>$45</td>
                 <td>45 minutes</td>
                 <td>True</td>
-                <td><button className="editButton">Edit</button><button className="deleteButton">Delete</button></td>
-              </tr>
-              <tr>
-                <td>AAX</td>
-                <td>ADELAIDE</td>
-                <td>$3.22</td>
-                <td>+0.01</td>
-                <td>+1.36%</td>
-              </tr>
-              <tr>
-                <td>XXD</td>
-                <td>ADITYA BIRLA</td>
-                <td>$1.02</td>
-                <td>-1.01</td>
-                <td>+2.36%</td>
-              </tr>
+              </tr> */}
+             
             </tbody>
           </table>
         </div>
@@ -79,6 +81,7 @@ class UserPage extends Component {
 // const mapStateToProps = ({user}) => ({ user });
 const mapStateToProps = state => ({
   user: state.user,
+  adminReducer: state.adminReducer,
 });
 
 // this allows us to use <App /> in index.js
