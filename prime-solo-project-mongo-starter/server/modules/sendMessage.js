@@ -1,5 +1,7 @@
+//this array contains the list of services available. Later in development this will be imported from the database.
 const services = ['haircuts', 'haircut', 'balayage', 'color', 'cut', 'trim'];
 
+//this object contains the answers to each question based on the service. Later in development this will be imported from the database.
 const serviceDetails = {
     haircut: {
         crueltyFree: true,
@@ -33,8 +35,10 @@ const serviceDetails = {
     },
 }
 
+//this array contains the name of all the questions (otherwise known as intents) in order to loop through the intentSynonyms object below. Later in development this will be imported from the database.
 const intents = ['crueltyFree', 'cost', 'appointment', 'time']
 
+//this object contains questions (otherwise known as intents) with an array of synonyms. Later in development this will be imported from the database.
 const intentSynonyms = {
     crueltyFree: ['cruelty', 'free', 'animal', 'animals', 'testing', 'tested'],
     cost: ['cost', 'pay', 'fee', 'much', 'price', 'pricing'],
