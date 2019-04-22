@@ -12,9 +12,35 @@ function* fetchInfo (action) {
         
     }
 }
+// function* fetchBot(action) {
+//     try {
+//         const infoResponse = yield axios.get('/message');
+//         console.log('fetch bot saga was hit', infoResponse.data);
+//         yield dispatch({ type: 'MESSAGE_DATA', payload: infoResponse.data })
+
+//     } catch (error) {
+//         console.log('error wit your fetch info');
+
+//     }
+// }
+
+
+function* addService(action) {
+    console.log('action.payload:', action.payload);
+    
+    try {
+        yield axios.post('/admin', action.payload);
+        yield dispatch({ type: 'FETCH_INFO' });
+    } catch (error) {
+        console.log('post Saga error', error);
+    }
+}
 
 function* adminSaga() {
     yield takeLatest('FETCH_INFO', fetchInfo);
+    yield takeLatest ('ADD_SERVICE', addService);
+    // yield takeLatest ('FETCH_BOT', fetchBot)
+
 }
 
 export default adminSaga;

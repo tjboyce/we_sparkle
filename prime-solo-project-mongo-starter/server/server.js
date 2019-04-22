@@ -31,6 +31,19 @@ app.use('/api/user', userRouter);
 app.use('/', webhook);
 app.use('/admin', adminRouter)
 
+// app.get('/message', rejectUnauthenticated, async (req, res) => {
+//   await client.connect();
+//   const database = client.db(dbName);
+//   const result = await database.collection('services').find({}).toArray();
+//   console.log('take it or leave it this is what we got: ', result);
+//   let thisObject = {};
+//   for (object of result) {
+//     thisObject[object.service] = object;
+//   }
+//   console.log('service Details', thisObject);
+//   res.send(result)
+// })
+
 // Serve static files
 app.use(express.static('build'));
 
