@@ -13,6 +13,7 @@ const ObjectId = require('mongodb').ObjectID;
 
 
 router.get('/', rejectUnauthenticated, async (req, res) => {
+    console.log('delete this log')
     //connect to the mongodb client   
     await client.connect();
     const database = client.db(dbName);
