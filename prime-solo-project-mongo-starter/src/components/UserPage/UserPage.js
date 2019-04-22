@@ -14,17 +14,20 @@ class UserPage extends Component {
 
   deleteService = (id) => {
     return () => {
-      console.log('deleteService is running', id);
-      axios({
-        method: 'DELETE',
-        url: `/admin/${id}`
-      })
-        .then((response) => {
-          console.log('back from database')
+      const r = window.confirm("Are you sure you want to delete this service item?");
+      if (r) {
+        console.log('deleteService is running', id);
+        axios({
+          method: 'DELETE',
+          url: `/admin/${id}`
         })
-        .catch((error) => {
-          console.log('Bad stuff happened! Oh no!', error);
-        })
+          .then((response) => {
+            this.props.dispatch({ type: 'FETCH_INFO' })
+          })
+          .catch((error) => {
+            console.log('Bad stuff happened! Oh no!', error);
+          })
+      }
     }
   }
 
