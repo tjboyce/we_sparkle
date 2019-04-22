@@ -26,7 +26,6 @@ router.get('/', rejectUnauthenticated, async (req, res) => {
     res.send(result)
 })
 
-<<<<<<< HEAD
 
 
 
@@ -44,7 +43,6 @@ router.post ('/', rejectUnauthenticated, async (req, res)=>{
     })
     
 
-=======
 router.delete('/:id', rejectUnauthenticated, async (req, res) => {
     let reqId = req.params.id;
     console.log('we are deleting id', reqId);
@@ -54,6 +52,5 @@ router.delete('/:id', rejectUnauthenticated, async (req, res) => {
     await database.collection('services').findOneAndDelete({ "_id": mongodb.ObjectId(reqId) });
     res.sendStatus(200);
 })
->>>>>>> master
 
 module.exports = router;
