@@ -29,7 +29,7 @@ class AddNewService extends Component {
     } 
 
     render(){
-        console.log('addnewservice component loaded', this.state);
+        console.log('add new service component loaded', this.state);
         
         return(
             <div>

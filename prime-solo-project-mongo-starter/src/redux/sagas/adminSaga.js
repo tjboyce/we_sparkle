@@ -12,6 +12,19 @@ function* fetchInfo (action) {
         
     }
 }
+// function* fetchBot(action) {
+//     try {
+//         const infoResponse = yield axios.get('/message');
+//         console.log('fetch bot saga was hit', infoResponse.data);
+//         yield dispatch({ type: 'MESSAGE_DATA', payload: infoResponse.data })
+
+//     } catch (error) {
+//         console.log('error wit your fetch info');
+
+//     }
+// }
+
+
 function* addService(action) {
     console.log('action.payload:', action.payload);
     
@@ -25,7 +38,9 @@ function* addService(action) {
 
 function* adminSaga() {
     yield takeLatest('FETCH_INFO', fetchInfo);
-    yield takeLatest ('ADD_SERVICE', addService)
+    yield takeLatest ('ADD_SERVICE', addService);
+    // yield takeLatest ('FETCH_BOT', fetchBot)
+
 }
 
 export default adminSaga;
