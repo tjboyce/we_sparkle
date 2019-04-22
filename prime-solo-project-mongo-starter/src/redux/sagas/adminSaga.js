@@ -12,9 +12,20 @@ function* fetchInfo (action) {
         
     }
 }
+function* addService(action) {
+    console.log('action.payload:', action.payload);
+    
+    try {
+        yield axios.post('/admin', action.payload);
+        yield dispatch({ type: 'FETCH_INFO' });
+    } catch (error) {
+        console.log('post Saga error', error);
+    }
+}
 
 function* adminSaga() {
     yield takeLatest('FETCH_INFO', fetchInfo);
+    yield takeLatest ('ADD_SERVICE', addService)
 }
 
 export default adminSaga;

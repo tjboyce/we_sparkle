@@ -22,4 +22,19 @@ router.get('/', rejectUnauthenticated, async (req, res) => {
 
 })
 
+router.post ('/', rejectUnauthenticated, async (req, res)=>{
+    console.log('server post hit', req.body);
+        await client.connect();
+        const database = client.db(dbName)
+        await database.collection('services').insertOne({
+            service: req.body.service,
+            cost: req.body.cost,
+            time: req.body.time,
+         
+        })
+        res.sendStatus(201)
+    })
+    
+
+
 module.exports = router;
