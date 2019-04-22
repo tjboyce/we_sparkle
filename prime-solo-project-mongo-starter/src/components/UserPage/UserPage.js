@@ -1,5 +1,5 @@
 import React from 'react';
-import {Component} from 'react';
+import { Component } from 'react';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './UserPage.css'
@@ -8,86 +8,86 @@ import axios from 'axios';
 // const UserPage = ({ user }) => (
 // and then instead of `props.user.username` you could use `user.username`
 class UserPage extends Component {
-  componentDidMount(){
-    this.props.dispatch ({type: 'FETCH_INFO'})
+  componentDidMount() {
+    this.props.dispatch({ type: 'FETCH_INFO' })
   }
 
   deleteService = (id) => {
     return () => {
       console.log('deleteService is running', id);
-    axios({
-      method: 'DELETE',
-      url: `/admin/${id}`
-    })
-      .then((response) => {
-        console.log('back from database')
+      axios({
+        method: 'DELETE',
+        url: `/admin/${id}`
       })
-      .catch((error) => {
-        console.log('Bad stuff happened! Oh no!', error);
-      })
+        .then((response) => {
+          console.log('back from database')
+        })
+        .catch((error) => {
+          console.log('Bad stuff happened! Oh no!', error);
+        })
+    }
   }
-}
 
-  render (){
-    
+  render() {
+
     return (
 
-  
-  <div>
-    
-    <h1 id="welcome">
-      Welcome, {this.props.user.username}!
+
+      <div>
+
+        <h1 id="welcome">
+          Welcome, {this.props.user.username}!
     </h1>
-  
-    <div>
-      <section>
-        {/*for demo wrap*/}
-        <h1>Services</h1>
-        <div className="tbl-header">
-          <table cellPadding={0} cellSpacing={0} border={0}>
-            <thead>
-             
-              <tr>
-                <th>Service</th>
-                <th>Cost</th>
-                <th>Time</th>
-                <th>Cruelty Free</th>
-                <th>Edit/Delete</th>
-              </tr>
-            </thead>
-          </table>
-        </div>
-        <div className="tbl-content">
-          <table cellPadding={0} cellSpacing={0} border={0}>
-            <tbody>
+
+        <div>
+          <section>
+            {/*for demo wrap*/}
+            <h1>Services</h1>
+            <div className="tbl-header">
+              <table cellPadding={0} cellSpacing={0} border={0}>
+                <thead>
+
+                  <tr>
+                    <th>Service</th>
+                    <th>Cost</th>
+                    <th>Time</th>
+                    <th>Cruelty Free</th>
+                    <th>Edit/Delete</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <div className="tbl-content">
+              <table cellPadding={0} cellSpacing={0} border={0}>
+                <tbody>
                   {this.props.adminReducer.map((item) => (
                     <tr key={item._id}>
                       <td>{item.service}</td>
                       <td>${item.cost}</td>
                       <td>{item.time}</td>
                       <td>{item.crueltyfree}</td>
-                    
-                      
+
+
                       <td><button className="editButton">Edit</button><button onClick={this.deleteService(item._id)} className="deleteButton">Delete</button></td>
 
                     </tr>
                   ))}
-              {/* <tr>
+                  {/* <tr>
                 <td>Haircut</td>
                 <td>$45</td>
                 <td>45 minutes</td>
                 <td>True</td>
               </tr> */}
-             
-            </tbody>
-          </table>
+
+                </tbody>
+              </table>
+            </div>
+          </section>
+          {/* follow me template */}
+
         </div>
-      </section>
-      {/* follow me template */}
-    
-    </div>
-  </div>
-   )
+      </div>
+    )
   }
 }
 

@@ -23,9 +23,13 @@ router.get('/', rejectUnauthenticated, async (req, res) => {
 })
 
 router.delete('/:id', rejectUnauthenticated, async (req, res) => {
-    console.log('in delete route');
-    res.sendStatus(200);
+    let reqId = req.params.id;
+    console.log('we are deleting id', reqId);
+    await client.connect();
 
+    const database = client.db(dbName);
+    await database.collection('services').findOneAndDelete({ "_id": mongodb.ObjectId(reqId) });
+    res.sendStatus(200);
 })
 
 module.exports = router;
