@@ -13,18 +13,20 @@ class UserPage extends Component {
   }
 
   deleteService = (id) => {
-    console.log('deleteService is running', id);
+    return () => {
+      console.log('deleteService is running', id);
     axios({
       method: 'DELETE',
       url: `/admin/${id}`
     })
       .then((response) => {
-        console.log('back from database', response)
+        console.log('back from database')
       })
       .catch((error) => {
         console.log('Bad stuff happened! Oh no!', error);
       })
   }
+}
 
   render (){
     
