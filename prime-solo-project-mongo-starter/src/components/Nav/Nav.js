@@ -10,14 +10,15 @@ const Nav = (props) => (
       <h2 className="nav-title">We Sparkle</h2>
     </Link>
     <div className="nav-right">
-      <Link className="nav-link" to="/home"> </Link>
-      <button to="/logout" className="nav-link"
+      <Link to="/logout" className="nav-link" >
+      <button 
         /* /* Show this link if they are logged in or not,
         but call this link 'Home' if they are logged in,
         and call this link 'Login / Register' if they are not */
         onClick={() => props.dispatch({ type: 'LOGOUT' })}>
         Logout
       </button>
+      </Link>
       {/* Show the link to the info page and the logout button if the user is logged in */}
       {props.user.id && (
         <>
