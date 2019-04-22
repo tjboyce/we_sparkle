@@ -2,6 +2,7 @@ import React from 'react';
 import {Component} from 'react';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
+import AddNewItem from'../AddService/AddService'
 import './UserPage.css'
 // this could also be written with destructuring parameters as:
 // const UserPage = ({ user }) => (
@@ -21,6 +22,7 @@ class UserPage extends Component {
     <h1 id="welcome">
       Welcome, {this.props.user.username}!
     </h1>
+    <button>Add Item</button>
   
     <div>
       <section>
@@ -68,7 +70,7 @@ class UserPage extends Component {
           </table>
         </div>
       </section>
-      {/* follow me template */}
+     <AddNewItem />
     
     </div>
   </div>
