@@ -1,3 +1,6 @@
+let service = '';
+let query = '';
+
 const services = ['haircut', 'balayage', 'color', 'cut', 'trim'];
 
 const serviceDetails = {
@@ -28,15 +31,14 @@ const serviceDetails = {
     },
 }
 
-const intents = {
+const intents = ['crueltyFree', 'cost', 'appointment', 'time']
+
+const intentSynonyms = {
     crueltyFree: ['cruelty', 'free', 'animal', 'animals', 'testing', 'tested'],
     cost: ['cost', 'pay', 'fee', 'much', 'price', 'pricing'],
     appointment: ['appointment', 'appt', 'schedule', 'sched'],
     time: ['long', 'duration', 'length', 'time', 'hour', 'hours', 'minute', 'minutes'],
-
 }
-
-let service = '';
 
 handleService = (text, whatService) => {
     const textArray = text.toLowerCase().split(' ');
@@ -44,79 +46,78 @@ handleService = (text, whatService) => {
         word = word.replace(/[^a-zA-Z0-9]/g, '');
         whatService.forEach(serviceType => {
             if (word == serviceType) {
-                 service = word;
+                service = word;
             }
         })
     })
-   return handleQuestion(textArray, intents, service);
+    return handleQuestion(textArray);
 };
 
-handleQuestion = (textArray, intents, service) => {
-    let crueltyFree = 0;
-    let cost = 0;
-    let appointment = 0;
-    let time = 0;
+handleQuestion = (textArray) => {
+    allWeights = [];
+    for (let intent of intents) {
+        let intentWeight = {
+            intent,
+            weight: getIntentWeight(intent, textArray),
+        }
+        allWeights.push(intentWeight);
+    }
+    return serviceQuestion(allWeights);
+};
+
+getIntentWeight = (intent, textArray) => {
+    let weight = 0;
     textArray.forEach(word => {
         word = word.replace(/[^a-zA-Z0-9]/g, '');
-        intents.crueltyFree.forEach(match => {
-            if (word == match) {
-                crueltyFree++;
-            }
-        }),
-            intents.cost.forEach(match => {
-                if (word == match) {
-                    cost++;
-                }
-            }),
-            intents.appointment.forEach(match => {
-                if (word == match) {
-                    appointment++;
-                }
-            }),
-            intents.time.forEach(match => {
-                if (word == match) {
-                    time++;
-                }
-            });
+        if (intentSynonyms[intent].includes(word)) {
+            weight++;
+        }
     });
-    const questions = { crueltyFree, cost, appointment, time }
-   return  serviceQuestion(service, questions);
-};
-
-serviceQuestion = (service, questions) => {
-    let finalQuestion = '';
-    if (questions.crueltyFree > finalQuestion) {
-        finalQuestion = 'crueltyFree';
-    };
-    if (questions.cost > finalQuestion) {
-        finalQuestion = 'cost';
-    };
-    if (questions.appointment > finalQuestion) {
-        finalQuestion = 'appointment';
-    };
-    if (questions.time > finalQuestion) {
-        finalQuestion = 'time';
-    };
-    return handleResponse(service, finalQuestion);
+    return weight;
 }
 
-handleResponse = (service, question) => {
-    if (question == 'crueltyFree') {
-        if (serviceDetails[service].crueltyFree === true) {
-            return `All of our ${service} products are cruelty free.`;
-        } else {
-            return `The ${service} has been tested on animals.`
+serviceQuestion = (questions) => {
+    let initialQuery = query;
+    let finalQuestion = 0;
+    for (let question of questions) {
+        if (question.weight > finalQuestion) {
+            finalQuestion = question.intent;
         }
-    } else if (question == 'cost') {
-        return `A ${service} costs ${serviceDetails[service].cost}`;
-    } else if (question == 'time') {
-        return `Our ${service} takes ${serviceDetails[service].time}`
-    } else if (question == 'appointment') {
-        return `Please book a ${service} appointment by following the Appointment button above!`;
-    } 
+    }
+    if (finalQuestion != 0) {
+        query = finalQuestion;
+    }
+    return handleResponse();
+}
+
+handleResponse = () => {
+    if (!service && !query) {
+        return null;
+    }
+    if (service && query) {
+        if (query == 'crueltyFree') {
+            if (serviceDetails[service].crueltyFree === true) {
+                return `All of our ${service} products are cruelty free.`;
+            } else {
+                return `The ${service} has been tested on animals. Very cute animals.`
+            }
+        } else if (query == 'cost') {
+            return `A ${service} costs ${serviceDetails[service].cost}`;
+        } else if (query == 'time') {
+            return `Our ${service} takes ${serviceDetails[service].time}`
+        } else {
+            return `Please book a ${service} appointment by following the Appointment button above!`;
+        }
+    } else if (service) {
+        return `Sparkle Bot got confused! It looks like you\'re asking about our ${service} service, what would you like to know? `;
+    } else if (query) {
+        return 'Which service are you asking about?';
+    } else {
+        return 'Sparkle Bot got confused! Please ask your question again. If you\'ve seen this message before double check spelling and grammar otherwise feel free to reach us at (555) 867-5309!'
+    }
 };
 
 
 module.exports = (text) => {
-   return handleService(text, services);
+    return handleService(text, services);
 }
