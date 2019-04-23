@@ -9,6 +9,14 @@ import axios from 'axios';
 // const UserPage = ({ user }) => (
 // and then instead of `props.user.username` you could use `user.username`
 class UserPage extends Component {
+  state = {
+    id: '',
+    service: '',
+    cost: '',
+    time: '',
+    showInputs: false,
+  }
+
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_INFO' })
     
@@ -37,7 +45,46 @@ class UserPage extends Component {
     }
   }
 
+  editService = ([id, service, cost, time]) => {
+    return () => {
+      console.log('this items id is', id);
+      console.log('this items service is', service);
+      console.log('this items cost is', cost);
+      console.log('this items time is', time);
+      this.setState({
+        id: id,
+        showInputs: true,
+        service: service,
+        cost: cost,
+        time: time,
+      })
+    }
+  }
+  // sets local state to input values
+  handleChangeFor = (propertyName) => (event) => {
+    this.setState({
+      [propertyName]: event.target.value,
+    });
+  }
+
+  saveServiceChanges = () => {
+    console.log('in saveServiceChanges and the id is', this.state.id);
+    this.props.dispatch({type: 'EDIT_SERVICE', payload: this.state})
+  }
+
   render() {
+    console.log('this is the state', this.state);
+    let editServiceDisplay;
+    if(this.state.showInputs) {
+      editServiceDisplay = <div>
+        <input onChange={this.handleChangeFor('service')} value={this.state.service}></input>
+        <input onChange={this.handleChangeFor('cost')} value={this.state.cost}></input>
+        <input onChange={this.handleChangeFor('time')} value={this.state.time}></input>
+        <button onClick={this.saveServiceChanges}>Save</button>
+        <button>Cancel</button>
+      </div>
+    }
+    else editServiceDisplay = null;
 
     return (
 
@@ -74,7 +121,7 @@ class UserPage extends Component {
                       
 
 
-                      <td><button className="editButton">Edit</button><button onClick={this.deleteService(item._id)} className="deleteButton">Delete</button></td>
+                      <td><button onClick={this.editService([item._id, item.service, item.cost, item.time])} className="editButton">Edit</button><button onClick={this.deleteService(item._id)} className="deleteButton">Delete</button></td>
 
                     </tr>
                   ))}
@@ -90,7 +137,7 @@ class UserPage extends Component {
             </div>
           </section>
           {/* follow me template */}
-
+              {editServiceDisplay}
         </div>
 
       </div>
