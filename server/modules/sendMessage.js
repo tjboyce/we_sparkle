@@ -1,39 +1,51 @@
-//this array contains the list of services available. Later in development this will be imported from the database.
-const services = ['haircuts', 'haircut', 'balayage', 'color', 'cut', 'trim'];
+//this array contains the list of services available.
+let services = 
 
-//this object contains the answers to each question based on the service. Later in development this will be imported from the database.
-const serviceDetails = {
-    haircut: {
-        crueltyFree: true,
-        cost: '$35.',
-        time: '30 to 45 minutes.'
-    },
-    haircuts: {
-        crueltyFree: true,
-        cost: '$35.',
-        time: '30 to 45 minutes.'
-    },
-    balayage: {
-        crueltyFree: false,
-        cost: '$120.',
-        time: 'one to two hours.'
-    },
-    trim: {
-        crueltyFree: true,
-        cost: '$20.',
-        time: '20 to 30 minutes.'
-    },
-    cut: {
-        crueltyFree: true,
-        cost: '$60.',
-        time: 'roughly an hour.'
-    },
-    color: {
-        crueltyFree: false,
-        cost: '$250.',
-        time: 'up to 6 hours.'
-    },
-}
+//blank array of services will be updated dynamically.
+[];
+
+//array of services for testing.
+// ['haircut', 'color', 'balayage']
+
+//this object contains the answers to each question based on the service.
+let serviceDetails = 
+
+//blank object of service details will be updated dynamically.
+{};
+
+//blank object with service details for testing.
+// {
+//     haircut: {
+//         crueltyFree: true,
+//         cost: '$35.',
+//         time: '30 to 45 minutes.'
+//     },
+//     haircuts: {
+//         crueltyFree: true,
+//         cost: '$35.',
+//         time: '30 to 45 minutes.'
+//     },
+//     balayage: {
+//         crueltyFree: false,
+//         cost: '$120.',
+//         time: 'one to two hours.'
+//     },
+//     trim: {
+//         crueltyFree: true,
+//         cost: '$20.',
+//         time: '20 to 30 minutes.'
+//     },
+//     cut: {
+//         crueltyFree: true,
+//         cost: '$60.',
+//         time: 'roughly an hour.'
+//     },
+//     color: {
+//         crueltyFree: false,
+//         cost: '$250.',
+//         time: 'up to 6 hours.'
+//     },
+// }
 
 //this array contains the name of all the questions (otherwise known as intents) in order to loop through the intentSynonyms object below. Later in development this will be imported from the database.
 const intents = ['crueltyFree', 'cost', 'appointment', 'time']
@@ -52,17 +64,31 @@ let service = '';
 let query = '';
 
 //handleService identifies the service the user is talking about. 
-handleService = (text) => {                                                 //text is the string the user inputs in the facebook message.
+handleService = (text, serviceObject) => {                                  //text is the string the user inputs in the facebook message.
+    serviceDetails = serviceObject;
+    console.log('serviceDetails set to:', serviceDetails)                                         //sets serviceDetails equal to the incoming object queried from the .post coming from Facebook.
+    services = serviceArray();  
+    console.log('services set to:', services) //function will sort through and create an array of service names.
     const textArray = text.toLowerCase().split(' ');                        //this line sets the input message to all lower case and then breaks it into an array of words at every space and sets it to textArray.
     textArray.forEach(word => {                                             //loop will cycle through each word in textArray.
         word = word.replace(/[^a-zA-Z0-9]/g, '');                           //removes any special characters (!, @, ?, $, etc.) from the word.
         services.forEach(serviceType => {                                   //loop will cycle through each service type available.
-            if (word == serviceType) {                                      
-                service = word;                                             //if a word in the user's message matches a service that will set the service variable.
-            }                                                               //*** One limitation of this bot is that only the first service mentioned will be identified and set. ***/
+            if (word === serviceType.toLowerCase()) {                                      
+                service = word.toLowerCase();                                             //if a word in the user's message matches a service that will set the service variable.
+            }                                                               //*** One limitation of this bot is that only the last service mentioned will be identified and set. ***/
         })
     })
     return handleQuestion(textArray);                                       //Runs handleQuestion with the user's input message as an array.
+};
+
+//serviceArray creates an array of service names
+serviceArray = () => {
+    let services = [] 
+    let fixCase = Object.keys(serviceDetails);                             //creates a blank array thats stores the names of serviceDetails keys.
+    fixCase.forEach(word => {
+        services.push(word.toLowerCase())
+    })
+    return services;                                                        //returns the array of service names.
 };
 
 //handleQuestion identifies the question synonyms and quantifies them.
@@ -134,6 +160,6 @@ handleResponse = () => {
 };
 
 //export is a single run of the above functions based on the user's input text.
-module.exports = (text) => {
-    return handleService(text, services);
+module.exports = (text, serviceObject) => {
+    return handleService(text, serviceObject);
 }
