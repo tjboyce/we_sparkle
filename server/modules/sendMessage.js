@@ -144,7 +144,7 @@ handleResponse = () => {
                 return `The ${service} has been tested on animals.`
             }
         } else if (query == 'cost') {
-            return `A ${service} costs ${serviceDetails[service].cost}`;
+            return `A ${service} costs $${serviceDetails[service].cost}`;
         } else if (query == 'time') {
             return `Our ${service} takes ${serviceDetails[service].time}`
         } else {
