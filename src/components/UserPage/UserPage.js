@@ -68,9 +68,9 @@ class UserPage extends Component {
                 <tbody>
                   {this.props.adminReducer.map((item) => (
                     <tr key={item._id}>
-                      <td>{item.service}</td>
-                      <td>${item.cost}</td>
-                      <td>{item.time}</td>
+                      <td>{item.service.service}</td>
+                      <td>${item.cost.cost}</td>
+                      <td>{item.time.time}</td>
                       
 
 

@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './AddService.css'
+import { timingSafeEqual } from 'crypto';
 
 class AddNewService extends Component {
     /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 
     handleClick = () => {
-        if(this.state.service && this.state.cost && this.state.time){
-        this.props.dispatch({ type: 'ADD_SERVICE', payload: this.state })
-        
+        if (this.state.service && this.state.cost && this.state.time) {
+            this.props.dispatch({ type: 'ADD_SERVICE', payload: this.state })
+            this.toggle()
         }
-        else if(!this.state.service){
+        else if (!this.state.service) {
             window.alert('Please enter a service type');
         }
-        else if(!this.state.cost){
+        else if (!this.state.cost) {
             window.alert('Please enter the cost of the service');
         }
         else if (!this.state.time) {
@@ -21,17 +22,22 @@ class AddNewService extends Component {
         }
     }
 
-    handleService = event => {
-        console.log('service', event);
-        this.setState({ service: event.target.value.toLowerCase() });
+    handleChangeFor = (property) => (event) => {
+        console.log(event.target.value);
 
-    };
+        this.setState({
+            ...this.state,
+            [property]: event.target.value
+        })
+    }
 
-    handleCost = event => {
-        this.setState({ cost: event.target.value });
-    };
-    handleTime = event => {
-        this.setState({ time: event.target.value });
+
+
+    handleSynonym = (property) => (event) => {
+        this.setState({
+            ...this.state,
+            [property]: event.target.value,
+        })
     }
 
 
@@ -41,9 +47,6 @@ class AddNewService extends Component {
         this.toggle = this.toggle.bind(this);
         this.state = {
             popoverOpen: false,
-            service: '',
-            cost: '',
-            time: ''
         };
     }
 
@@ -52,6 +55,9 @@ class AddNewService extends Component {
             popoverOpen: !this.state.popoverOpen
         });
     }
+
+
+
 
     render() {
         console.log('add service component loaded');
@@ -62,14 +68,21 @@ class AddNewService extends Component {
                     Add New Service
                 </button>
                 <div className="container">
-                <div id="popoverDiv" style={this.state.popoverOpen ? { display: 'inline' } : { display: 'none' }} >
-                <button id="exitButton" onClick={this.toggle}>Exit</button>
-                    <h3>Please enter the service type, cost of service and length of time that the service takes.</h3>
-                    <input placeholder="service type" onChange={this.handleService} ></input>
-                    <input placeholder="cost" type="number" onChange={this.handleCost}></input>
-                    <input placeholder="length" onChange={this.handleTime}></input>
-                    <button id="addServiceButton" onClick={this.handleClick}>Add Service</button>
-                </div>
+                    <div id="popoverDiv" style={this.state.popoverOpen ? { display: 'inline' } : { display: 'none' }} >
+                        <button id="exitButton" onClick={this.toggle}>Exit</button>
+                        <h3>Please enter the service type, cost of service and length of time that the service takes.</h3>
+                        <input placeholder="service type" onChange={this.handleChangeFor('service')} value={this.state.service} />
+                        <input placeholder="service synonym" onChange={this.handleChangeFor('serviceSynonym')} />
+                        <br />
+                        <input placeholder="cost" type="number" onChange={this.handleChangeFor('cost')} />
+                        <br />
+                        <input placeholder="length" onChange={this.handleChangeFor('time')} />
+                        <br />
+                        <button id="addServiceButton" onClick={this.handleClick}>Add Service</button>
+                    </div>
+
+
+
                 </div>
             </div>
         );

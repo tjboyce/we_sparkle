@@ -35,9 +35,18 @@ router.post ('/', rejectUnauthenticated, async (req, res)=>{
         await client.connect();
         const database = client.db(dbName)
         await database.collection('services').insertOne({
-            service: req.body.service,
-            cost: req.body.cost,
-            time: req.body.time,
+            service: {
+                service: req.body.service,
+                synonyms: [req.body.serviceSynonym]
+            },
+            cost: {
+                cost: req.body.cost,
+                synonyms:['cost', 'pay', 'fee', 'much', 'price', 'pricing', 'dollar', 'dollars']
+            },
+            time: {
+                time: req.body.time,
+                synonyms: ['length', 'long', 'duration', 'time', 'hour', 'hours', 'minute', 'minutes']
+            }
          
         })
         res.sendStatus(201)
