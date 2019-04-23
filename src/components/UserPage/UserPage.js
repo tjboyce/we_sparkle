@@ -36,7 +36,11 @@ class UserPage extends Component {
       }
     }
   }
+  editService = () => {
+    console.log('editService is running');
+  }
 
+  
   render() {
 
     return (
@@ -74,7 +78,7 @@ class UserPage extends Component {
                       
 
 
-                      <td><button className="editButton">Edit</button><button onClick={this.deleteService(item._id)} className="deleteButton">Delete</button></td>
+                      <td><button onClick={this.editService} className="editButton">Edit</button><button onClick={this.deleteService(item._id)} className="deleteButton">Delete</button></td>
 
                     </tr>
                   ))}
