@@ -43,23 +43,31 @@ class UserPage extends Component {
       }
     }
   }
-  editService = (id) => {
+
+  editService = ([id, service, cost, time]) => {
     return () => {
-      console.log('editService is running', id);
+      console.log('this items id is', id);
+      console.log('this items service is', service);
+      console.log('this items cost is', cost);
+      console.log('this items time is', time);
       this.setState({
         showInputs: true,
+        service: service,
+        cost: cost,
+        time: time,
       })
     }
   }
 
 
   render() {
+    console.log('this is the state', this.state);
     let editServiceDisplay;
     if(this.state.showInputs) {
       editServiceDisplay = <div>
-        <input></input>
-        <input></input>
-        <input></input>
+        <input value={this.state.service}></input>
+        <input value={this.state.cost}></input>
+        <input value={this.state.time}></input>
         <button>Save</button>
         <button>Cancel</button>
       </div>
@@ -101,7 +109,7 @@ class UserPage extends Component {
                       
 
 
-                      <td><button onClick={this.editService(item._id)} className="editButton">Edit</button><button onClick={this.deleteService(item._id)} className="deleteButton">Delete</button></td>
+                      <td><button onClick={this.editService([item._id, item.service, item.cost, item.time])} className="editButton">Edit</button><button onClick={this.deleteService(item._id)} className="deleteButton">Delete</button></td>
 
                     </tr>
                   ))}
