@@ -46,6 +46,10 @@ router.post ('/', rejectUnauthenticated, async (req, res)=>{
             time: {
                 time: req.body.time,
                 synonyms: ['length', 'long', 'duration', 'time', 'hour', 'hours', 'minute', 'minutes']
+            },
+            crueltyFree :{
+                crueltyFree: req.body.crueltyFree,
+                synonyms: ['cruelty', 'free', 'animal', 'animals', 'testing', 'tested']
             }
          
         })
