@@ -58,17 +58,26 @@ class UserPage extends Component {
       })
     }
   }
+  // sets local state to input values
+  handleChangeFor = (propertyName) => (event) => {
+    this.setState({
+      [propertyName]: event.target.value,
+    });
+  }
 
+  saveServiceChanges = () => {
+    console.log('in saveServiceChanges');
+  }
 
   render() {
     console.log('this is the state', this.state);
     let editServiceDisplay;
     if(this.state.showInputs) {
       editServiceDisplay = <div>
-        <input value={this.state.service}></input>
-        <input value={this.state.cost}></input>
-        <input value={this.state.time}></input>
-        <button>Save</button>
+        <input onChange={this.handleChangeFor('service')} value={this.state.service}></input>
+        <input onChange={this.handleChangeFor('cost')} value={this.state.cost}></input>
+        <input onChange={this.handleChangeFor('time')} value={this.state.time}></input>
+        <button onClick={this.saveServiceChanges}>Save</button>
         <button>Cancel</button>
       </div>
     }
