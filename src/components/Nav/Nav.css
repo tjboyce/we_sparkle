@@ -5,12 +5,17 @@
     color: #9c2525;
     padding-left: 10px;
     background-repeat: none;
+    right: 0;
 }
 
 .nav {
   /* overflow: hidden; */
+  background-image: url('./We-Sparkle-Logo-Draft.png');
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
+  padding: 50px;
+  
+
 }
 
 .nav-link {
@@ -40,9 +45,9 @@
 
 button{
   border: none;
- background: rgba(204, 204, 204, 0);
- color: #9c2525;
- float: left;
+  background: rgba(204, 204, 204, 0);
+  color: #9c2525;
+  float: left;
   color: #9c2525;
   text-align: center;
   text-decoration: none;
@@ -53,4 +58,10 @@ button:hover{
   background-color: #9c2525;
   color: white;
   cursor: pointer;
+}
+
+h2{
+  background-image: url('./We-Sparkle-Logo-Draft.png');
+  background-size: 80px;
+  background-repeat: no-repeat;
 }

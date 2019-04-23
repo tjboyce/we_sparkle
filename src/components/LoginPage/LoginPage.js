@@ -41,9 +41,10 @@ class LoginPage extends Component {
             {this.props.errors.loginMessage}
           </h2>
         )}
-        <form onSubmit={this.login}>
+        
+        <form onSubmit={this.login} id="login-form">
           <h1>Login</h1>
-          <div>
+          
             <label htmlFor="username">
               Username:
               <input
@@ -53,7 +54,7 @@ class LoginPage extends Component {
                 onChange={this.handleInputChangeFor('username')}
               />
             </label>
-          </div>
+          
           <div>
             <label htmlFor="password">
               Password:
@@ -65,7 +66,7 @@ class LoginPage extends Component {
               />
             </label>
           </div>
-          <div>
+          <div id="submitButton" >
             <input
               className="log-in"
               type="submit"
@@ -73,16 +74,20 @@ class LoginPage extends Component {
               value="Log In"
             />
           </div>
-        </form>
-        <center>
+          <div id="registerButton">
           <button
             type="button"
             className="link-button"
-            onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}}
+            onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }) }}
           >
             Register
           </button>
-        </center>
+          </div>
+        </form>
+        
+        
+          
+        
       </div>
     );
   }

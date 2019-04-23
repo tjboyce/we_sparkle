@@ -6,11 +6,12 @@ import './Nav.css';
 
 const Nav = (props) => (
   <div className="nav">
-    <Link to="/home">
-      <h2 className="nav-title">We Sparkle</h2>
-    </Link>
+  
+      <Link to="/home" className="home"></Link>
+  
     <div className="nav-right">
-      <Link to="/logout" className="nav-link" >
+    
+      <Link to="/" className="nav-link" >
       <button 
         /* /* Show this link if they are logged in or not,
         but call this link 'Home' if they are logged in,

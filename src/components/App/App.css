@@ -7,36 +7,43 @@ body {
 }
 
 .alert {
-    background-color: #ff4545;
+    background-color: #004cf0e7;
     margin: 50px;
+    text-align: center;
+    padding: 20px;
 }
 
-form {
-    background-color: #dbd5d5;
-    width: 30%;
-    height: 250px;
-    margin: 20px auto;
-    padding: 25px;
-    border-radius: 2px;
-}
-
-input {
-    margin: 5px;
-    margin-bottom: 10px;
-}
 
 .log-in, .log-out, .register {
-  background-color: #00acb0;
+  background-color: #004cf0;
   border-radius: 4px;
-  color: #f8f8f8;
+  border: solid 1px black;
+  box-shadow: 0 6px 20px 0 rgba(0,0,0,0.19);
+  color: white;
   min-height: 50px;
   min-width: 100px;
   outline:0;
   cursor: pointer;
+  align-content: center;
 }
 
+
+/* This changes the color of the login, logout and register buttons when you hover over them */
 .log-in:hover, .log-out:hover, .register:hover {
-  background-color: #008183;
+  background-color: #004cf0;
+}
+
+form {
+    background-color:rgba(167, 165, 164, 0.911);
+    width: 30%;
+    height: 250px;
+    margin: 150px auto;
+    padding: 25px;
+    border-radius: 5px;
+}
+
+#submitButton{
+text-align: center;
 }
 
 /* This line makes the "Register" and "Login" buttons look like links */

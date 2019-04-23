@@ -4,8 +4,8 @@
     height: 150px;
     border-radius: 50%;
     position: absolute;
-    right: 40px;
-    top: 100px;
+    right: 45px;
+    top: 130px;
     cursor: pointer;
     border: none;
     background-repeat: no-repeat;
@@ -58,7 +58,7 @@ border: solid black;
 border-radius: 20px;
 padding: 20px;
 cursor: pointer;
-margin-left: 130px;
+margin-left: 135px;
 }
 
 #popoverDiv button:hover{
