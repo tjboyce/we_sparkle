@@ -31,8 +31,6 @@ class AddNewService extends Component {
         })
     }
 
-
-
     handleSynonym = (property) => (event) => {
         this.setState({
             ...this.state,
@@ -40,6 +38,16 @@ class AddNewService extends Component {
         })
     }
 
+   
+handleClick2 = () =>{
+    console.log('checkbox checked')
+    this.setState({
+        ...this.state,
+       crueltyFree: !this.state.crueltyFree
+    })
+    console.log(this.state.crueltyFree);
+    
+}
 
     constructor(props) {
         super(props);
@@ -47,6 +55,7 @@ class AddNewService extends Component {
         this.toggle = this.toggle.bind(this);
         this.state = {
             popoverOpen: false,
+            crueltyFree: false
         };
     }
 
@@ -79,6 +88,7 @@ class AddNewService extends Component {
                         <input placeholder="length" onChange={this.handleChangeFor('time')} />
                         <br />
                         <button id="addServiceButton" onClick={this.handleClick}>Add Service</button>
+                        <label>Cruelty Free?<input type="checkbox" onClick={this.handleClick2} /></label>
                     </div>
 
 
