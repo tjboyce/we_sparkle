@@ -47,7 +47,7 @@ const sendTextMessage = (userId, text) => {
     );
 }
 
-module.exports = (event) => {
+module.exports = (event, thisObject) => {
     const userId = event.sender.id;
     const message = event.message.text;
 
@@ -66,7 +66,7 @@ module.exports = (event) => {
         .then(responses => {
             const result = responses[0].queryResult;
             console.log('our input text is', result.queryText);
-            return sendTextMessage(userId, sendMessage(result.queryText) ? sendMessage(result.queryText) : result.fulfillmentText);
+            return sendTextMessage(userId, sendMessage(result.queryText, thisObject) ? sendMessage(result.queryText, thisObject) : result.fulfillmentText);
         })
         .catch(err => {
             console.error('ERR;l,;l,l;,l;,;l,;lOR:', err, 'Request is:', request);

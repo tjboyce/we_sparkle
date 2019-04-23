@@ -23,8 +23,7 @@ class AddNewService extends Component {
 
     handleService = event => {
         console.log('service', event);
-
-        this.setState({ service: event.target.value });
+        this.setState({ service: event.target.value.toLowerCase() });
 
     };
 

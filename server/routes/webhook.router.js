@@ -70,7 +70,7 @@ router.post('/', async (req, res) => {
         body.entry.forEach(entry => {
             entry.messaging.forEach(event => {
                 if (req.body.entry[0].messaging[0].message.text) {
-                    processMessage(event);
+                    processMessage(event, thisObject);
                     console.log('message success');
                 }
             })
