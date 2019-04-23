@@ -13,7 +13,7 @@ let serviceDetails =
 //blank object of service details will be updated dynamically.
 {};
 
-//blank object with service details for testing.
+//object with service details for testing.
 // {
 //     haircut: {
 //         crueltyFree: true,
@@ -50,7 +50,7 @@ let serviceDetails =
 //this array contains the name of all the questions (otherwise known as intents) in order to loop through the intentSynonyms object below. Later in development this will be imported from the database.
 const intents = ['crueltyFree', 'cost', 'appointment', 'time']
 
-//this object contains questions (otherwise known as intents) with an array of synonyms. Later in development this will be imported from the database.
+//this object contains questions (otherwise known as intents) with an array of synonyms. Later in development this will be added from the database.
 const intentSynonyms = {
     crueltyFree: ['cruelty', 'free', 'animal', 'animals', 'testing', 'tested'],
     cost: ['cost', 'pay', 'fee', 'much', 'price', 'pricing'],
@@ -65,16 +65,14 @@ let query = '';
 
 //handleService identifies the service the user is talking about. 
 handleService = (text, serviceObject) => {                                  //text is the string the user inputs in the facebook message.
-    serviceDetails = serviceObject;
-    console.log('serviceDetails set to:', serviceDetails)                                         //sets serviceDetails equal to the incoming object queried from the .post coming from Facebook.
-    services = serviceArray();  
-    console.log('services set to:', services) //function will sort through and create an array of service names.
+    serviceDetails = serviceObject;                                         //sets serviceDetails equal to the incoming object queried from the .post coming from Facebook.
+    services = serviceArray();                                              //function will sort through and create an array of service names.
     const textArray = text.toLowerCase().split(' ');                        //this line sets the input message to all lower case and then breaks it into an array of words at every space and sets it to textArray.
     textArray.forEach(word => {                                             //loop will cycle through each word in textArray.
         word = word.replace(/[^a-zA-Z0-9]/g, '');                           //removes any special characters (!, @, ?, $, etc.) from the word.
         services.forEach(serviceType => {                                   //loop will cycle through each service type available.
             if (word === serviceType.toLowerCase()) {                                      
-                service = word.toLowerCase();                                             //if a word in the user's message matches a service that will set the service variable.
+                service = word.toLowerCase();                               //if a word in the user's message matches a service that will set the service variable.
             }                                                               //*** One limitation of this bot is that only the last service mentioned will be identified and set. ***/
         })
     })
@@ -84,7 +82,8 @@ handleService = (text, serviceObject) => {                                  //te
 //serviceArray creates an array of service names
 serviceArray = () => {
     let services = [] 
-    let fixCase = Object.keys(serviceDetails);                             //creates a blank array thats stores the names of serviceDetails keys.
+    let fixCase = Object.keys(serviceDetails);                              //creates a blank array thats stores the names of serviceDetails keys.
+    console.log('services:', fixCase)
     fixCase.forEach(word => {
         services.push(word.toLowerCase())
     })
@@ -144,11 +143,11 @@ handleResponse = () => {
                 return `The ${service} has been tested on animals.`
             }
         } else if (query == 'cost') {
-            return `A ${service} costs $${serviceDetails[service].cost}`;
+            return `Our ${service}  service costs $${serviceDetails[service].cost.cost}.`;
         } else if (query == 'time') {
-            return `Our ${service} takes ${serviceDetails[service].time}`
+            return `Our ${service} service takes ${serviceDetails[service].time.time}.`
         } else {
-            return `Please book a ${service} appointment by following the Appointment button above!`;
+            return `In order to book a ${service} appointment, please click the Appointment button above!`;
         }
     } else if (service) {
         return `It looks like you\'re asking about our ${service} service, what would you like to know?`;

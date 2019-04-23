@@ -59,7 +59,7 @@ router.post('/', async (req, res) => {
     console.log('take it or leave it this is what we got: ', result);
     let thisObject = {};
     for (object of result) {
-        thisObject[object.service] = object;
+        thisObject[object.service.service] = object;
     }
     console.log('Service Details form Database:', thisObject);
 
