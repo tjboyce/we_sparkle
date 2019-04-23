@@ -54,4 +54,15 @@ router.delete('/:id', rejectUnauthenticated, async (req, res) => {
     res.sendStatus(200);
 })
 
+router.put('/:id', rejectUnauthenticated, async (req, res) => {
+    console.log('hi this is the put route and our action.payload is your mom and also', req.body.id)
+    // let reqId = req.params.id;
+    // console.log('we are deleting id', reqId);
+    // await client.connect();
+
+    // const database = client.db(dbName);
+    // await database.collection('services').findOneAndDelete({ "_id": mongodb.ObjectId(reqId) });
+    res.sendStatus(200);
+})
+
 module.exports = router;

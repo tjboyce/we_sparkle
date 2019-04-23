@@ -10,6 +10,7 @@ import axios from 'axios';
 // and then instead of `props.user.username` you could use `user.username`
 class UserPage extends Component {
   state = {
+    id: '',
     service: '',
     cost: '',
     time: '',
@@ -51,6 +52,7 @@ class UserPage extends Component {
       console.log('this items cost is', cost);
       console.log('this items time is', time);
       this.setState({
+        id: id,
         showInputs: true,
         service: service,
         cost: cost,
@@ -66,7 +68,8 @@ class UserPage extends Component {
   }
 
   saveServiceChanges = () => {
-    console.log('in saveServiceChanges');
+    console.log('in saveServiceChanges and the id is', this.state.id);
+    this.props.dispatch({type: 'EDIT_SERVICE', payload: this.state})
   }
 
   render() {
