@@ -1,0 +1,74 @@
+#Popover1{
+    background-color: #9c2525;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    position: absolute;
+    right: 40px;
+    top: 100px;
+    cursor: pointer;
+    border: none;
+    background-repeat: no-repeat;
+    background-position-x: 21px;
+    background-position-y: 28px;
+    color: white;
+}
+#Popover1:hover{
+ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+background-image: url('../W31b.gif');
+/* background-repeat: no-repeat */
+}
+
+#popoverDiv{
+    background-color: rgb(167, 165, 164);
+    width: 400px;
+    height: 500px;
+    box-shadow: 0px 0px 0px 1000px rgba(119, 117, 117, 0.541);
+    display: inline-block;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding-top: 150px;
+}
+
+#popoverDiv input {
+    width: 200px;
+    display: block;
+    margin: 20px auto;
+    border: solid 1px;
+    outline: none;
+    padding-block-start: 20px;
+    border-radius: 5px;
+    text-align: center;
+    padding: 5px;
+    display: inline-table;
+    position: sticky;
+
+}
+
+#popoverDiv h3{
+    margin: 20px ;
+}
+
+#popoverDiv button{
+border: solid black;
+border-radius: 20px;
+padding: 20px;
+cursor: pointer;
+margin-left: 130px;
+}
+
+#popoverDiv button:hover{
+background-color: #9c2525;
+box-shadow: 0 6px 20px 0 rgba(0,0,0,0.19);
+
+}
+
+.container{
+    text-align: center;
+    /* justify-content: center; */
+ 
+}
