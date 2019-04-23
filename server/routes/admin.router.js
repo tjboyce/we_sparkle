@@ -32,15 +32,28 @@ router.get('/', rejectUnauthenticated, async (req, res) => {
 
 router.post('/', rejectUnauthenticated, async (req, res) => {
     console.log('server post hit', req.body);
-    await client.connect();
-    const database = client.db(dbName)
-    await database.collection('services').insertOne({
-        service: req.body.service,
-        cost: req.body.cost,
-        time: req.body.time,
-
-    })
-    res.sendStatus(201)
+        await client.connect();
+        const database = client.db(dbName)
+        await database.collection('services').insertOne({
+            service: {
+                service: req.body.service,
+                synonyms: [req.body.serviceSynonym]
+            },
+            cost: {
+                cost: req.body.cost,
+                synonyms:['cost', 'pay', 'fee', 'much', 'price', 'pricing', 'dollar', 'dollars']
+            },
+            time: {
+                time: req.body.time,
+                synonyms: ['length', 'long', 'duration', 'time', 'hour', 'hours', 'minute', 'minutes']
+            },
+            crueltyFree :{
+                crueltyFree: req.body.crueltyFree,
+                synonyms: ['cruelty', 'free', 'animal', 'animals', 'testing', 'tested']
+            }
+         
+        })
+        res.sendStatus(201)
 })
 
 
