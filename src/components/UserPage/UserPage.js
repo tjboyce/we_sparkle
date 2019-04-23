@@ -9,6 +9,13 @@ import axios from 'axios';
 // const UserPage = ({ user }) => (
 // and then instead of `props.user.username` you could use `user.username`
 class UserPage extends Component {
+  state = {
+    service: '',
+    cost: '',
+    time: '',
+    showInputs: false,
+  }
+
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_INFO' })
     
@@ -39,11 +46,25 @@ class UserPage extends Component {
   editService = (id) => {
     return () => {
       console.log('editService is running', id);
+      this.setState({
+        showInputs: true,
+      })
     }
   }
 
 
   render() {
+    let editServiceDisplay;
+    if(this.state.showInputs) {
+      editServiceDisplay = <div>
+        <input></input>
+        <input></input>
+        <input></input>
+        <button>Save</button>
+        <button>Cancel</button>
+      </div>
+    }
+    else editServiceDisplay = null;
 
     return (
 
@@ -96,7 +117,7 @@ class UserPage extends Component {
             </div>
           </section>
           {/* follow me template */}
-
+              {editServiceDisplay}
         </div>
 
       </div>
