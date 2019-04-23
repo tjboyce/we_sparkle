@@ -63,11 +63,12 @@ class AddNewService extends Component {
                 </button>
                 <div className="container">
                 <div id="popoverDiv" style={this.state.popoverOpen ? { display: 'inline' } : { display: 'none' }} >
+                <button id="exitButton" onClick={this.toggle}>Exit</button>
                     <h3>Please enter the service type, cost of service and length of time that the service takes.</h3>
                     <input placeholder="service type" onChange={this.handleService} ></input>
                     <input placeholder="cost" type="number" onChange={this.handleCost}></input>
                     <input placeholder="length" onChange={this.handleTime}></input>
-                    <button onClick={this.handleClick}>Add Service</button>
+                    <button id="addServiceButton" onClick={this.handleClick}>Add Service</button>
                 </div>
                 </div>
             </div>
