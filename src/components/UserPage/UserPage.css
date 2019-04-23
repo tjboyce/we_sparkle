@@ -1,6 +1,7 @@
+
 #welcome{
 font-style: italic;
-color: black;
+color:#9c2525;
 text-align: center;
 }
 
@@ -20,13 +21,21 @@ font-size: 1.5em;
 
 
 h1{
-  font-size: 30px;
-  color: #9c2525;
+  font-size: 50px;
+  color: #058b75;
   text-transform: uppercase;
-  font-weight: 300;
+  font-weight: 300px;
   text-align: center;
   margin-bottom: 15px;
-  
+}
+#services{
+  font-size: 50px;
+  color: #004cf0;
+  text-transform: uppercase;
+  font-weight: 300px;
+  text-decoration: underline; 
+  text-align: center;
+  margin-bottom: 15px;
 }
 
 
@@ -53,7 +62,7 @@ th{
   padding: 20px 15px;
   text-align: left;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 20px;
   color: black;
   text-transform: uppercase;
 }
@@ -62,7 +71,7 @@ td{
   text-align: left;
   vertical-align:middle;
   font-weight: 300;
-  font-size: 12px;
+  font-size: 18px;
   color: #9c2525;
   border-bottom: solid 1px rgba(255,255,255,0.1);
 }
