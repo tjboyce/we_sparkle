@@ -2,7 +2,7 @@ import React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import AddNewItem from'../AddService/AddService'
+import AddNewItem from '../AddService/AddService'
 import './UserPage.css'
 import axios from 'axios';
 // this could also be written with destructuring parameters as:
@@ -11,6 +11,7 @@ import axios from 'axios';
 class UserPage extends Component {
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_INFO' })
+    
   }
 
   //This will delete a row from the admin table when the delete button is clicked.
@@ -39,40 +40,38 @@ class UserPage extends Component {
   render() {
 
     return (
-      
+
       <div>
         <h1 id="welcome">
           Welcome, {this.props.user.username}!
     </h1>
-    <button>Add Item</button>
-  
-    <div>
-      <section>
-        {/*for demo wrap*/}
-        <h1>Services</h1>
-        <div className="tbl-header">
-          <table cellPadding={0} cellSpacing={0} border={0}>
-            <thead>
-             
-              <tr>
-                <th>Service</th>
-                <th>Cost</th>
-                <th>Time</th>
-                <th>Cruelty Free</th>
-                <th>Edit/Delete</th>
-              </tr>
-            </thead>
-          </table>
-        </div>
-        <div className="tbl-content">
-          <table cellPadding={0} cellSpacing={0} border={0}>
-            <tbody>
+        <AddNewItem />
+
+        <div>
+          <section>
+            {/*for demo wrap*/}
+            <h1 id="services">Services</h1>
+            <div className="tbl-header">
+              <table cellPadding={0} cellSpacing={0} border={0}>
+                <thead id="servicesTable">
+                  <tr>
+                    <th>Service</th>
+                    <th>Cost</th>
+                    <th>Time</th>
+                    <th>Edit/Delete</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <div className="tbl-content">
+              <table cellPadding={0} cellSpacing={0} border={0}>
+                <tbody>
                   {this.props.adminReducer.map((item) => (
                     <tr key={item._id}>
                       <td>{item.service}</td>
                       <td>${item.cost}</td>
                       <td>{item.time}</td>
-                      <td>{item.crueltyfree}</td>
+                      
 
 
                       <td><button className="editButton">Edit</button><button onClick={this.deleteService(item._id)} className="deleteButton">Delete</button></td>
@@ -93,10 +92,9 @@ class UserPage extends Component {
           {/* follow me template */}
 
         </div>
-     <AddNewItem />
-    
-    </div>
-   )
+
+      </div>
+    )
   }
 }
 
