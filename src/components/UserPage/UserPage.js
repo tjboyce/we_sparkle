@@ -36,11 +36,13 @@ class UserPage extends Component {
       }
     }
   }
-  editService = () => {
-    console.log('editService is running');
+  editService = (id) => {
+    return () => {
+      console.log('editService is running', id);
+    }
   }
 
-  
+
   render() {
 
     return (
@@ -78,7 +80,7 @@ class UserPage extends Component {
                       
 
 
-                      <td><button onClick={this.editService} className="editButton">Edit</button><button onClick={this.deleteService(item._id)} className="deleteButton">Delete</button></td>
+                      <td><button onClick={this.editService(item._id)} className="editButton">Edit</button><button onClick={this.deleteService(item._id)} className="deleteButton">Delete</button></td>
 
                     </tr>
                   ))}
