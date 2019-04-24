@@ -56,7 +56,6 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
         res.sendStatus(201)
 })
 
-
 router.delete('/:id', rejectUnauthenticated, async (req, res) => {
     let reqId = req.params.id;
     console.log('we are deleting id', reqId);
@@ -68,7 +67,7 @@ router.delete('/:id', rejectUnauthenticated, async (req, res) => {
 })
 
 router.put('/:id', rejectUnauthenticated, async (req, res) => {
-    console.log('edit route hit with the ID of:', req.body.id);
+    console.log('edit route hit with the :==============================================', req.body);
     await client.connect();
     const database = client.db(dbName);
     await database.collection('services').findOneAndReplace(
@@ -89,8 +88,13 @@ router.put('/:id', rejectUnauthenticated, async (req, res) => {
                 "crueltyFree": req.body.crueltyFree,
                 // "synonyms": [],
             },
+            // "keyword": {
+            //     "keyword": req.body.keyword,
+            //     "synonyms": [req.body.synonyms],
+            //     "answer": req.body.answer, 
+            // }
 
-         }) 
+         })
            
     res.sendStatus(200);
 })
