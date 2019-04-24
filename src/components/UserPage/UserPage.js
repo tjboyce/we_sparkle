@@ -89,6 +89,12 @@ class UserPage extends Component {
     console.log('in saveServiceChanges and the id is', this.state.id);
     this.props.dispatch({ type: 'EDIT_SERVICE', payload: this.state })
   }
+  submitFAQ = ()=>{
+    console.log('in submitFAQ and the id is:', this.state.id);
+    this.props.dispatch ({type: 'ADD_FAQ', payload: this.state})
+    
+  }
+
 
   render() {
     console.log('this is the state', this.state);
@@ -110,6 +116,7 @@ class UserPage extends Component {
       <input onChange={this.handleChangeFor('keyWord')} value={this.state.keyWord} placeholder='Key word' />
         <input onChange={this.handleChangeFor('synonyms')} value={this.state.synonyms} placeholder='Synonyms' />
         <input onChange={this.handleChangeFor('answer')} value={this.state.answer} placeholder='Answer' />
+        <button onClick={this.submitFAQ}>Add FAQ/ Submit</button>
       </div>
     }
 

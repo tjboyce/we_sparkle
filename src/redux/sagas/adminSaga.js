@@ -33,11 +33,24 @@ function* editService(action) {
         console.log('put Saga error', error);
     }
 }
+function* addFaq(action) {
+   console.log('this is the addFAQ saga action.payload:', action.payload);
+    
+    
+    try {
+        yield axios.post('/admin/faq', action.payload);
+        yield dispatch({ type: 'FETCH_INFO' });
+    } catch (error) {
+        console.log('post faq Saga error', error);
+    }
+}
+
 
 function* adminSaga() {
-    yield takeLatest('FETCH_INFO', fetchInfo);
-    yield takeLatest ('ADD_SERVICE', addService);
+    yield takeLatest('FETCH_INFO', fetchInfo)
+    yield takeLatest ('ADD_SERVICE', addService)
     yield takeLatest ('EDIT_SERVICE', editService)
+    yield takeLatest ('ADD_FAQ', addFaq)
 
 }
 
