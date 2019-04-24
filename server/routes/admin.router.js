@@ -68,12 +68,30 @@ router.delete('/:id', rejectUnauthenticated, async (req, res) => {
 })
 
 router.put('/:id', rejectUnauthenticated, async (req, res) => {
-    console.log('hi this is the put route and our action.payload is your mom and also', req.body.id);
+    console.log('edit route hit with the ID of:', req.body.id);
     await client.connect();
     const database = client.db(dbName);
     await database.collection('services').findOneAndReplace(
         { "_id": mongodb.ObjectId(req.body.id) },
-        { "service": req.body.service, "cost": req.body.cost, "time": req.body.time })
+        { "service": {
+            "service": req.body.service,
+            // "synonyms": [req.body.serviceSynonym]
+            },
+         "cost":{
+             "cost": req.body.cost,
+            //  "synonyms": [req.body.costSynonym]
+            },
+          "time":{
+              "time": req.body.time,
+            //   "synonyms": ['length', 'long', 'duration', 'time', 'hour', 'hours', 'minute', 'minutes']
+          },
+            "crueltyFree": {
+                "crueltyFree": req.body.crueltyFree,
+                // "synonyms": [],
+            },
+
+         }) 
+           
     res.sendStatus(200);
 })
 

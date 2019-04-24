@@ -121,7 +121,7 @@ class UserPage extends Component {
                       
 
 
-                      <td><button onClick={this.editService([item._id, item.service, item.cost, item.time])} className="editButton">Edit</button><button onClick={this.deleteService(item._id)} className="deleteButton">Delete</button></td>
+                      <td><button onClick={this.editService([item._id, item.service.service, item.cost.cost, item.time.time])} className="editButton">Edit</button><button onClick={this.deleteService(item._id)} className="deleteButton">Delete</button></td>
 
                     </tr>
                   ))}
