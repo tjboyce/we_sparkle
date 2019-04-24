@@ -65,6 +65,7 @@ let query = '';
 
 //handleService identifies the service the user is talking about. 
 handleService = (text, serviceObject) => {                                  //text is the string the user inputs in the facebook message.
+    console.log('THIS IS THE SRVOBJ', serviceObject)
     serviceDetails = serviceObject;                                         //sets serviceDetails equal to the incoming object queried from the .post coming from Facebook.
     services = serviceArray();                                              //sets services object based on the serviceArray function.
     splitSynonyms();                                                        //runs the splitSynonym function
