@@ -65,29 +65,47 @@ let query = '';
 
 //handleService identifies the service the user is talking about. 
 handleService = (text, serviceObject) => {                                  //text is the string the user inputs in the facebook message.
+    console.log('THIS IS THE SRVOBJ', serviceObject)
     serviceDetails = serviceObject;                                         //sets serviceDetails equal to the incoming object queried from the .post coming from Facebook.
-    services = serviceArray();                                              //function will sort through and create an array of service names.
+    services = serviceArray();                                              //sets services object based on the serviceArray function.
+    splitSynonyms();                                                        //runs the splitSynonym function
     const textArray = text.toLowerCase().split(' ');                        //this line sets the input message to all lower case and then breaks it into an array of words at every space and sets it to textArray.
     textArray.forEach(word => {                                             //loop will cycle through each word in textArray.
         word = word.replace(/[^a-zA-Z0-9]/g, '');                           //removes any special characters (!, @, ?, $, etc.) from the word.
-        services.forEach(serviceType => {                                   //loop will cycle through each service type available.
-            if (word === serviceType.toLowerCase()) {                                      
-                service = word.toLowerCase();                               //if a word in the user's message matches a service that will set the service variable.
-            }                                                               //*** One limitation of this bot is that only the last service mentioned will be identified and set. ***/
-        })
+        Object.keys(services).forEach(serviceKeyword =>{                    //loops through each service in services.
+            services[serviceKeyword].forEach(synonym => {                   //loops through all the synonyms for each service.
+                if (word == synonym.toLowerCase()) {                        //if the input word matches a service synonym it will set that as the service
+                    service = serviceKeyword.toLowerCase()                  
+                }
+            })
+        })                                                                  //*** One limitation of this bot is that only the last service mentioned will be identified and set. ***/
     })
     return handleQuestion(textArray);                                       //Runs handleQuestion with the user's input message as an array.
 };
 
-//serviceArray creates an array of service names
-serviceArray = () => {
-    let services = [] 
-    let fixCase = Object.keys(serviceDetails);                              //creates a blank array thats stores the names of serviceDetails keys.
-    console.log('services:', fixCase)
-    fixCase.forEach(word => {
-        services.push(word.toLowerCase())
+//splitSynonyms breaks the synonyms string into an array
+splitSynonyms = () => {
+    let finalArray = []                                                     //sets an empty array to store each services synonyms in.
+    Object.keys(services).forEach(service => {                              //loops through the object keys in the services object.
+        let synonym = Object.values(services[service])                      //creates a variable equal to the string value of the services object for this service.
+        synonymArray = synonym[0].toLowerCase().split(' ');                 //takes the above string, makes it lower case and splits it into an array at every space.
+            synonymArray.forEach(word => {                                  //loop through every word in the synonymArray created above.
+                word = word.replace(/[^a-zA-Z0-9]/g, '');                   //removes any special characters (!, @, ?, $, etc.) from the word.
+                finalArray.push(word)                                       //places the sanitized word in an array for delivery.
+            })
+        services[service] = finalArray;                                     //delivers the array as the new value for it's corrosponding service.
+        finalArray = [];                                                    //wipes finalArray for the next service.
     })
-    return services;                                                        //returns the array of service names.
+}
+
+//serviceArray creates an object of service names with a value of synonyms
+serviceArray = () => {  
+    let theseServices = {};                                                                 //creates a blank object to pass back.
+    let fixCase = Object.values(serviceDetails);                                            //assigns the values of serviceDetails to a variable.
+    fixCase.forEach(serviceObject => {                                                      //loop through each object within serviceDetails.
+        theseServices[serviceObject.service.service] = serviceObject.service.synonyms       //create a new object within theseServices with a key of the service name and a value of the string of synonyms.
+    })
+    return theseServices;                                                                   //returns the array of service names.
 };
 
 //handleQuestion identifies the question synonyms and quantifies them.
@@ -143,7 +161,7 @@ handleResponse = () => {
                 return `The ${service} has been tested on animals.`
             }
         } else if (query == 'cost') {
-            return `Our ${service}  service costs $${serviceDetails[service].cost.cost}.`;
+            return `Our ${service} service costs $${serviceDetails[service].cost.cost}.`;
         } else if (query == 'time') {
             return `Our ${service} service takes ${serviceDetails[service].time.time}.`
         } else {
