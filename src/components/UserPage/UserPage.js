@@ -17,6 +17,7 @@ class UserPage extends Component {
     synonyms: '',
     answer: '',
     showInputs: false,
+    showFAQ: false,
   }
 
   componentDidMount() {
@@ -47,13 +48,12 @@ class UserPage extends Component {
     }
   }
 
-  editService = ([id, service, cost, time, keyWord, synonyms, answer]) => {
+  editService = ([id, service, cost, time]) => {
     return () => {
       console.log('this items id is', id);
       console.log('this items service is', service);
       console.log('this items cost is', cost);
       console.log('this items time is', time);
-      console.log('this items keyWord is', keyWord);
       
       this.setState({
         id: id,
@@ -61,7 +61,18 @@ class UserPage extends Component {
         service: service,
         cost: cost,
         time: time,
-        keyword: keyWord,
+
+      })
+    }
+  }
+
+  FAQService = ([id, keyWord, synonyms, answer]) => {
+
+    return () => {
+      this.setState({
+        id: id,
+        showFAQ: true,
+        keyWord: keyWord,
         synonyms: synonyms,
         answer: answer,
       })
@@ -87,13 +98,21 @@ class UserPage extends Component {
         <input onChange={this.handleChangeFor('service')} value={this.state.service}></input>
         <input onChange={this.handleChangeFor('cost')} value={this.state.cost}></input>
         <input onChange={this.handleChangeFor('time')} value={this.state.time}></input>
-        <input onChange={this.handleChangeFor('keyWord')} value={this.state.keyWord} placeholder='Key word' />
-        <input onChange={this.handleChangeFor('synonyms')} value={this.state.synonyms} placeholder='Synonyms' />
-        <input onChange={this.handleChangeFor('answer')} value={this.state.answer} placeholder='Answer' />
+
+
         <button onClick={this.saveServiceChanges}>Save</button>
         <button>Cancel</button>
       </div>
     }
+    let FAQServiceDisplay;
+    if(this.state.showFAQ) {
+      FAQServiceDisplay= <div>
+      <input onChange={this.handleChangeFor('keyWord')} value={this.state.keyWord} placeholder='Key word' />
+        <input onChange={this.handleChangeFor('synonyms')} value={this.state.synonyms} placeholder='Synonyms' />
+        <input onChange={this.handleChangeFor('answer')} value={this.state.answer} placeholder='Answer' />
+      </div>
+    }
+
     else editServiceDisplay = null;
 
     return (
@@ -115,7 +134,7 @@ class UserPage extends Component {
                     <th>Service</th>
                     <th>Cost</th>
                     <th>Time</th>
-                    <th>Edit/Delete</th>
+                    <th>Edit/Delete/FAQ</th>
                   </tr>
                 </thead>
               </table>
@@ -129,9 +148,13 @@ class UserPage extends Component {
                       <td>${item.cost.cost}</td>
                       <td>{item.time.time}</td>
 
+                      <td>
+                        <button onClick={this.editService([item._id, item.service.service, item.cost.cost, item.time.time])} className="editButton">Edit</button>
 
+                      <button onClick={this.deleteService(item._id)} className="deleteButton">Delete</button>
 
-                      <td><button onClick={this.editService([item._id, item.service.service, item.cost.cost, item.time.time])} className="editButton">Edit</button><button onClick={this.deleteService(item._id)} className="deleteButton">Delete</button></td>
+                        <button onClick={this.FAQService([item._id, item.shampoo.keyWord, item.shampoo.synonyms, item.shampoo.answer])} className='FAQButton'>FAQ</button>
+                      </td>
 
                     </tr>
                   ))}
@@ -148,6 +171,7 @@ class UserPage extends Component {
           </section>
           {/* follow me template */}
           {editServiceDisplay}
+          {FAQServiceDisplay}
         </div>
 
       </div>
