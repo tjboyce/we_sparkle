@@ -50,11 +50,6 @@ class UserPage extends Component {
 
   editService = ([id, service, cost, time]) => {
     return () => {
-      console.log('this items id is', id);
-      console.log('this items service is', service);
-      console.log('this items cost is', cost);
-      console.log('this items time is', time);
-      
       this.setState({
         id: id,
         showInputs: true,
@@ -66,15 +61,15 @@ class UserPage extends Component {
     }
   }
 
-  FAQService = ([id, keyWord, synonyms, answer]) => {
+  FAQService = (id) => {
 
     return () => {
       this.setState({
         id: id,
         showFAQ: true,
-        keyWord: keyWord,
-        synonyms: synonyms,
-        answer: answer,
+        // keyWord: keyWord,
+        // synonyms: synonyms,
+        // answer: answer,
       })
     }
   }
@@ -110,6 +105,8 @@ class UserPage extends Component {
         <button>Cancel</button>
       </div>
     }
+    else editServiceDisplay = null;
+    
     let FAQServiceDisplay;
     if(this.state.showFAQ) {
       FAQServiceDisplay= <div>
@@ -120,7 +117,7 @@ class UserPage extends Component {
       </div>
     }
 
-    else editServiceDisplay = null;
+    else FAQServiceDisplay = null; 
 
     return (
 
@@ -160,7 +157,9 @@ class UserPage extends Component {
 
                       <button onClick={this.deleteService(item._id)} className="deleteButton">Delete</button>
 
-                        <button onClick={this.FAQService([item._id, item.shampoo.keyWord, item.shampoo.synonyms, item.shampoo.answer])} className='FAQButton'>FAQ</button>
+                        {/* <button onClick={this.FAQService([item._id, item.shampoo.keyWord, item.shampoo.synonyms, item.shampoo.answer])} className='FAQButton'>FAQ</button> */}
+                        <button onClick={this.FAQService(item._id)} className='FAQButton'>FAQ</button>
+
                       </td>
 
                     </tr>
