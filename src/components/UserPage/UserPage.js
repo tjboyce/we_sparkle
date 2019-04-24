@@ -1,7 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import LogOutButton from '../LogOutButton/LogOutButton';
 import AddNewItem from '../AddService/AddService'
 import './UserPage.css'
 import axios from 'axios';
@@ -14,12 +13,15 @@ class UserPage extends Component {
     service: '',
     cost: '',
     time: '',
+    keyWord: '',
+    synonyms: '',
+    answer: '',
     showInputs: false,
   }
 
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_INFO' })
-    
+
   }
 
   //This will delete a row from the admin table when the delete button is clicked.
@@ -45,18 +47,23 @@ class UserPage extends Component {
     }
   }
 
-  editService = ([id, service, cost, time]) => {
+  editService = ([id, service, cost, time, keyWord, synonyms, answer]) => {
     return () => {
       console.log('this items id is', id);
       console.log('this items service is', service);
       console.log('this items cost is', cost);
       console.log('this items time is', time);
+      console.log('this items keyWord is', keyWord);
+      
       this.setState({
         id: id,
         showInputs: true,
         service: service,
         cost: cost,
         time: time,
+        keyword: keyWord,
+        synonyms: synonyms,
+        answer: answer,
       })
     }
   }
@@ -69,17 +76,20 @@ class UserPage extends Component {
 
   saveServiceChanges = () => {
     console.log('in saveServiceChanges and the id is', this.state.id);
-    this.props.dispatch({type: 'EDIT_SERVICE', payload: this.state})
+    this.props.dispatch({ type: 'EDIT_SERVICE', payload: this.state })
   }
 
   render() {
     console.log('this is the state', this.state);
     let editServiceDisplay;
-    if(this.state.showInputs) {
+    if (this.state.showInputs) {
       editServiceDisplay = <div>
         <input onChange={this.handleChangeFor('service')} value={this.state.service}></input>
         <input onChange={this.handleChangeFor('cost')} value={this.state.cost}></input>
         <input onChange={this.handleChangeFor('time')} value={this.state.time}></input>
+        <input onChange={this.handleChangeFor('keyWord')} value={this.state.keyWord} placeholder='Key word' />
+        <input onChange={this.handleChangeFor('synonyms')} value={this.state.synonyms} placeholder='Synonyms' />
+        <input onChange={this.handleChangeFor('answer')} value={this.state.answer} placeholder='Answer' />
         <button onClick={this.saveServiceChanges}>Save</button>
         <button>Cancel</button>
       </div>
@@ -118,7 +128,7 @@ class UserPage extends Component {
                       <td>{item.service.service}</td>
                       <td>${item.cost.cost}</td>
                       <td>{item.time.time}</td>
-                      
+
 
 
                       <td><button onClick={this.editService([item._id, item.service.service, item.cost.cost, item.time.time])} className="editButton">Edit</button><button onClick={this.deleteService(item._id)} className="deleteButton">Delete</button></td>
@@ -137,7 +147,7 @@ class UserPage extends Component {
             </div>
           </section>
           {/* follow me template */}
-              {editServiceDisplay}
+          {editServiceDisplay}
         </div>
 
       </div>
