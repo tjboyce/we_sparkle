@@ -50,11 +50,6 @@ class UserPage extends Component {
 
   editService = ([id, service, cost, time]) => {
     return () => {
-      console.log('this items id is', id);
-      console.log('this items service is', service);
-      console.log('this items cost is', cost);
-      console.log('this items time is', time);
-      
       this.setState({
         id: id,
         showInputs: true,
@@ -66,15 +61,15 @@ class UserPage extends Component {
     }
   }
 
-  FAQService = ([id, keyWord, synonyms, answer]) => {
+  FAQService = (id) => {
 
     return () => {
       this.setState({
         id: id,
         showFAQ: true,
-        keyWord: keyWord,
-        synonyms: synonyms,
-        answer: answer,
+        // keyWord: keyWord,
+        // synonyms: synonyms,
+        // answer: answer,
       })
     }
   }
@@ -89,6 +84,12 @@ class UserPage extends Component {
     console.log('in saveServiceChanges and the id is', this.state.id);
     this.props.dispatch({ type: 'EDIT_SERVICE', payload: this.state })
   }
+  submitFAQ = ()=>{
+    console.log('in submitFAQ and the id is:', this.state.id);
+    this.props.dispatch ({type: 'ADD_FAQ', payload: this.state})
+    
+  }
+
 
   render() {
     console.log('this is the state', this.state);
@@ -104,16 +105,19 @@ class UserPage extends Component {
         <button>Cancel</button>
       </div>
     }
+    else editServiceDisplay = null;
+    
     let FAQServiceDisplay;
     if(this.state.showFAQ) {
       FAQServiceDisplay= <div>
       <input onChange={this.handleChangeFor('keyWord')} value={this.state.keyWord} placeholder='Key word' />
         <input onChange={this.handleChangeFor('synonyms')} value={this.state.synonyms} placeholder='Synonyms' />
         <input onChange={this.handleChangeFor('answer')} value={this.state.answer} placeholder='Answer' />
+        <button onClick={this.submitFAQ}>Add FAQ/ Submit</button>
       </div>
     }
 
-    else editServiceDisplay = null;
+    else FAQServiceDisplay = null; 
 
     return (
 
@@ -153,7 +157,9 @@ class UserPage extends Component {
 
                       <button onClick={this.deleteService(item._id)} className="deleteButton">Delete</button>
 
-                        <button onClick={this.FAQService([item._id, item.shampoo.keyWord, item.shampoo.synonyms, item.shampoo.answer])} className='FAQButton'>FAQ</button>
+                        {/* <button onClick={this.FAQService([item._id, item.shampoo.keyWord, item.shampoo.synonyms, item.shampoo.answer])} className='FAQButton'>FAQ</button> */}
+                        <button onClick={this.FAQService(item._id)} className='FAQButton'>FAQ</button>
+
                       </td>
 
                     </tr>

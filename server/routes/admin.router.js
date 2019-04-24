@@ -19,14 +19,26 @@ router.get('/', rejectUnauthenticated, async (req, res) => {
     const database = client.db(dbName);
     const result = await database.collection('services').find({}).toArray();
     console.log('get result', result);
-    // let thisObject = {};
-    // for (object of result ){
-    //   thisObject[object.service] = object;
-    //    }
-    // console.log('service Details', thisObject);
     res.send(result)
 })
 
+router.post('/faq', rejectUnauthenticated, async (req, res) => {
+    console.log('FAQ', req.body);
+    let faq = req.body
+    await client.connect();
+    const database = client.db(dbName)
+    
+    await database.collection('services').update(
+        {"_id": mongodb.ObjectId(req.body.id) },
+        {$set: {[req.body.keyWord]: {
+            keyWord: req.body.keyWord, 
+            synonyms: [req.body.synonyms],
+            answer: req.body.answer
+        }}}
+    );//end update
+    res.sendStatus(201)
+})
+//find by id and bling push
 
 
 
@@ -100,3 +112,9 @@ router.put('/:id', rejectUnauthenticated, async (req, res) => {
 })
 
 module.exports = router;
+
+// req.body.keyword:{
+//     keyword: req.body.keyword, 
+//     synonyms: req.body.synonyms,
+//     answer: req.body.answer,
+// }
