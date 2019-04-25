@@ -98,14 +98,14 @@ class UserPage extends Component {
     console.log('this is the state', this.state);
     let editServiceDisplay;
     if (this.state.showInputs) {
-      editServiceDisplay = <div>
+      editServiceDisplay = <div id='popoverDiv'>
         <input onChange={this.handleChangeFor('service')} value={this.state.service}></input>
         <input onChange={this.handleChangeFor('cost')} value={this.state.cost}></input>
         <input onChange={this.handleChangeFor('time')} value={this.state.time}></input>
 
 
-        <button onClick={this.saveServiceChanges}>Save</button>
-        <button onClick={this.cancelServiceChanges}>Cancel</button>
+        <button id="addServiceButton" onClick={this.saveServiceChanges}>Save</button>
+        <button id="exitButton" onClick={this.cancelServiceChanges}>Cancel</button>
       </div>
     }
     else editServiceDisplay = null;
