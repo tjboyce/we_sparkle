@@ -19,6 +19,8 @@ handleService = (text, serviceObject) => {                                  //te
     });                                                                     //sets serviceDetails equal to the incoming object queried from the .post coming from Facebook.
     services = servicesObject();                                            //sets services object based on the servicesObject function.
     intents = intentsObject();                                              //sets intents object based on the intentsObject function.
+    console.log('services:', services)
+    console.log('serviceDetails', serviceDetails)
     const textArray = text.toLowerCase().split(' ');                        //this line sets the input message to all lower case and then breaks it into an array of words at every space and sets it to textArray.
     textArray.forEach(word => {                                             //loop will cycle through each word in textArray.
         word = word.replace(/[^a-zA-Z0-9]/g, '');                           //removes any special characters (!, @, ?, $, etc.) from the word.
@@ -30,6 +32,7 @@ handleService = (text, serviceObject) => {                                  //te
             })
         })                                                                  //*** One limitation of this bot is that only the last service mentioned will be identified and set. ***/
     })
+    console.log('TJ', serviceDetails)
     return handleQuestion(textArray);                                       //Runs handleQuestion with the user's input message as an array.
 };
 
@@ -38,7 +41,7 @@ servicesObject = () => {
     let theseServices = {};                                                 //creates a blank object to pass back.
     let fixCase = Object.values(serviceDetails);                            //assigns the values of serviceDetails to a variable.
     fixCase.forEach(serviceObject => {                                      //loop through each object within serviceDetails.
-        const synonyms = serviceObject.service.synonyms[0]
+        const synonyms = serviceObject.service.synonyms
         theseServices[serviceObject.service.service] = synonyms             //create a new object within theseServices with a key of the service name and a value of the string of synonyms.
     })
     return theseServices;                                                   //returns the array of service names.
@@ -71,7 +74,8 @@ handleQuestion = (textArray) => {                                           //te
           weight: getIntentWeight(intent, textArray),                       //run getIntentWeight in order to quantify the number of keywords for a specific question.
       }
       allWeights.push(intentWeight);
-    }) 
+    })
+    console.log('ALL WEIGHT:', allWeights) 
     return serviceQuestion(allWeights);                                     //run serviceQuestion and pass the array containing all the questions scanned and how many synonym keywords were hit for each.
 };
 
@@ -79,7 +83,8 @@ handleQuestion = (textArray) => {                                           //te
 getIntentWeight = (intent, textArray) => {                                  //takes the question catagory and the user input as an array.
     let weight = 0;                                                         //sets initial weight to 0.
     textArray.forEach(word => {                                             //loop will cycle through each word in textArray.
-        word = word.replace(/[^a-zA-Z0-9]/g, '');                           //removes any special characters (!, @, ?, $, etc.) from the word.
+        word = word.replace(/[^a-zA-Z0-9]/g, '');
+        console.log('synonym check:', intents[intent].synonyms) //removes any special characters (!, @, ?, $, etc.) from the word.
         if (intents[intent].synonyms.includes(word)) {                        //compares word to the list of synonyms for the specified question (intent).
             weight++;                                                       //if the word matches add one to weight.
         }
