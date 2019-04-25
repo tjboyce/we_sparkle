@@ -74,7 +74,7 @@ handleClick2 = () =>{
 
 
     render() {
-        console.log('add service component loaded');
+     
 
         return (
             <div>
