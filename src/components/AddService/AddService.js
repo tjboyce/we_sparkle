@@ -78,16 +78,16 @@ handleClick2 = () =>{
                 </button>
                 <div className="container">
                     <div id="popoverDiv" style={this.state.popoverOpen ? { display: 'inline' } : { display: 'none' }} >
-                        <button id="exitButton" onClick={this.toggle}>Exit</button>
+                        <button id="popUpButton" onClick={this.toggle}><i class="far fa-times-circle"></i></button>
                         <h3>Please enter the service type, cost of service and length of time that the service takes.</h3>
                         <input placeholder="service type" onChange={this.handleChangeFor('service')} value={this.state.service} />
                         <input placeholder="service synonym" onChange={this.handleChangeFor('serviceSynonym')} />
                         <br />
-                        <input placeholder="cost" type="number" onChange={this.handleChangeFor('cost')} />
+                        <input placeholder="Cost: Sparkle-Bot response" type="text" onChange={this.handleChangeFor('cost')} />
                         <br />
-                        <input placeholder="length" onChange={this.handleChangeFor('time')} />
+                        <input placeholder="Time: Sparkle-Bot response" onChange={this.handleChangeFor('time')} />
                         <br />
-                        <button id="addServiceButton" onClick={this.handleClick}>Add Service</button>
+                        <button className="addServiceButton" id="popUpButton" onClick={this.handleClick}>Add Service</button>
                         <label>Cruelty Free?<input type="checkbox" onClick={this.handleClick2} /></label>
                     </div>
 
