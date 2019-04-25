@@ -56,12 +56,7 @@ router.post('/', async (req, res) => {
     await client.connect();
     const database = client.db(dbName);
     const result = await database.collection('services').find({}).toArray();
-    console.log('take it or leave it this is what we got: ', result, 'ARRAY', result[0].service.synonyms);
-    let thisObject = {};
-    for (object of result) {
-        thisObject[object.service.service] = object;
-    }
-    console.log('Service Details from Database:', thisObject);
+    const thisObject = result;
 
     // Checks this is an event from a page subscription
     if (body.object === 'page') {
