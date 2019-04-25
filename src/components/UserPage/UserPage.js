@@ -80,6 +80,13 @@ class UserPage extends Component {
     console.log('in saveServiceChanges and the id is', this.state.id);
     this.props.dispatch({ type: 'EDIT_SERVICE', payload: this.state })
   }
+
+  cancelServiceChanges = () => {
+    this.setState({
+      showInputs: false,
+    })
+  }
+  
   submitFAQ = () => {
     console.log('in submitFAQ and the id is:', this.state.id);
     this.props.dispatch({ type: 'ADD_FAQ', payload: this.state })
@@ -98,7 +105,7 @@ class UserPage extends Component {
 
 
         <button onClick={this.saveServiceChanges}>Save</button>
-        <button>Cancel</button>
+        <button onClick={this.cancelServiceChanges}>Cancel</button>
       </div>
     }
     else editServiceDisplay = null;
