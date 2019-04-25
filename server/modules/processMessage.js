@@ -65,10 +65,9 @@ module.exports = (event, thisObject) => {
         .detectIntent(request)
         .then(responses => {
             const result = responses[0].queryResult;
-            console.log('THIS OBJECT IS:', thisObject);
             return sendTextMessage(userId, sendMessage(result.queryText, thisObject) ? sendMessage(result.queryText, thisObject) : result.fulfillmentText);
         })
         .catch(err => {
-            console.error('ERR;l,;l,l;,l;,;l,;lOR:', err, 'Request is:', request);
+            console.error('processMessage error:', err);
         });
 }
