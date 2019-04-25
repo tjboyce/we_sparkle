@@ -86,6 +86,12 @@ class UserPage extends Component {
       showInputs: false,
     })
   }
+
+  cancelFAQChanges = () => {
+    this.setState({
+      showFAQ: false,
+    })
+  }
   
   submitFAQ = () => {
     console.log('in submitFAQ and the id is:', this.state.id);
@@ -98,25 +104,27 @@ class UserPage extends Component {
     console.log('this is the state', this.state);
     let editServiceDisplay;
     if (this.state.showInputs) {
-      editServiceDisplay = <div>
+      editServiceDisplay = <div id='popoverDiv'>
         <input onChange={this.handleChangeFor('service')} value={this.state.service}></input>
         <input onChange={this.handleChangeFor('cost')} value={this.state.cost}></input>
         <input onChange={this.handleChangeFor('time')} value={this.state.time}></input>
 
 
-        <button onClick={this.saveServiceChanges}>Save</button>
-        <button onClick={this.cancelServiceChanges}>Cancel</button>
+        <button id="addServiceButton" onClick={this.saveServiceChanges}>Save</button>
+        <button id="exitButton" onClick={this.cancelServiceChanges}>Cancel</button>
       </div>
     }
     else editServiceDisplay = null;
 
     let FAQServiceDisplay;
     if (this.state.showFAQ) {
-      FAQServiceDisplay = <div>
+      FAQServiceDisplay = <div id='popoverDiv'>
         <input onChange={this.handleChangeFor('keyWord')} value={this.state.keyWord} placeholder='Key word' />
         <input onChange={this.handleChangeFor('synonyms')} value={this.state.synonyms} placeholder='Synonyms' />
         <input onChange={this.handleChangeFor('answer')} value={this.state.answer} placeholder='Answer' />
-        <button onClick={this.submitFAQ}>Add FAQ/ Submit</button>
+
+        <button id="addServiceButton" onClick={this.submitFAQ}>Add FAQ/ Submit</button>
+        <button id="exitButton" onClick={this.cancelFAQChanges}>Cancel</button>
       </div>
     }
 
