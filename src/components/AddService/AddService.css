@@ -24,9 +24,9 @@
 }
 
 #popoverDiv{
-    background-color: rgb(167, 165, 164);
-    width: 800px;
-    height: 500px;
+    background-color: rgb(211, 211, 211);
+    width: 900px;
+    height: 600px;
     box-shadow: 0px 0px 0px 1000px rgba(119, 117, 117, 0.541);
     display: inline-block;
     margin: 0;
@@ -40,8 +40,9 @@
 
 #popoverDiv input {
     width: 200px;
+  
     display: block;
-    margin: 20px auto;
+    /* margin: 20px auto; */
     border: solid 1px;
     outline: none;
     padding-block-start: 20px;
@@ -52,31 +53,40 @@
     position: sticky;
 
 }
-
-#popoverDiv h3{
-    margin: 20px ;
-padding-top: 20px;
+#inputResponse{
+    width: 900px;
+    height: 50px;
 }
 
-#addServiceButton{
-border: solid black;
+#popoverDiv h3{
+    /* margin: 20px ; */
+padding-top: 20px;
+color: black;
+}
+
+.addServiceButton{
+    margin-left: 200px;
+/* border: solid black; */
 border-radius: 20px;
 padding: 20px;
 cursor: pointer;
 margin-left: 135px;
+
 }
 
-#exitButton{
-border: solid 2px black;
+#popUpButton{
+color: white;
+ background-color:rgb(213, 93, 93);
+/* border: solid 2px black; */
 border-radius: 20px;
-padding: 5px;
+padding: 15px;
 cursor: pointer;
 float: right;
 margin-top: 5px;
 margin-right: 5px;
 }
 #popoverDiv button:hover{
-background-color: #9c2525;
+/* background-color: #9c2525; */
 box-shadow: 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 .container{
