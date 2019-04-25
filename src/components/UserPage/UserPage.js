@@ -151,13 +151,15 @@ class UserPage extends Component {
               <table cellPadding={0} cellSpacing={0} border={0}>
                 <tbody>
                   {this.props.adminReducer.map((item) => (
+                    
+                    
                     <tr key={item._id}>
                       <td>{item.service.service}</td>
-                      <td>${item.cost.cost}</td>
-                      <td>{item.time.time}</td>
+                      <td>${item.cost.answer}</td>
+                      <td>{item.time.answer}</td>
 
                       <td>
-                        <button onClick={this.editService([item._id, item.service.service, item.cost.cost, item.time.time])} className="editButton"><i id="tableButton" class="far fa-edit"></i></button>
+                        <button onClick={this.editService([item._id, item.service.service, item.cost.answer, item.time.answer])} className="editButton"><i id="tableButton" class="far fa-edit"></i></button>
                     
 
                       </td>
@@ -167,10 +169,12 @@ class UserPage extends Component {
                       <td>
                         <button onClick={this.FAQService(item._id)} className='FAQButton'><i id = "tableButton"class="far fa-comment-dots"></i></button>
                       </td>
+                        
                     </tr>
+                   
                   ))}
 
-
+                    
                 </tbody>
               </table>
             </div>

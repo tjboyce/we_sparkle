@@ -44,12 +44,15 @@ router.post('/faq', rejectUnauthenticated, async (req, res) => {
 
 router.post('/', rejectUnauthenticated, async (req, res) => {
     console.log('server post hit', req.body);
+        let synonymArray = [];
+        synonymArray.push(req.body.serviceSynonym.split(' '));
+        console.log(synonymArray);
         await client.connect();
         const database = client.db(dbName)
         await database.collection('services').insertOne({
             service: {
                 service: req.body.service,
-                synonyms: [req.body.serviceSynonym]
+                synonyms: synonymArray,
             },
             cost: {
                 keyWord: 'cost',
