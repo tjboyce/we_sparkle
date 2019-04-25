@@ -84,7 +84,7 @@ handleClick2 = () =>{
                 <div className="container">
                     <div id="popoverDiv" style={this.state.popoverOpen ? { display: 'inline' } : { display: 'none' }} >
 
-                        <button id="popUpButton" onClick={this.toggle}><i class="far fa-times-circle"></i></button>
+                        <button className="closeAddServiceButton" onClick={this.toggle}><i class="far fa-times-circle"></i></button>
                         {/* <h3>Please enter the service type, cost of service and length of time that the service takes.</h3> */}
                         <h3>WHAT TYPE OF SERVICE WOULD YOU LIKE TO ADD?</h3><input placeholder="service type" onChange={this.handleChangeFor('service')} value={this.state.service} />
                         
