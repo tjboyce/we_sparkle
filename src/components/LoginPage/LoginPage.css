@@ -6,5 +6,7 @@ input {
     margin-bottom: 10px;
 }
 
- 
+ #login-form {
+     text-align: center;
+ }
 
