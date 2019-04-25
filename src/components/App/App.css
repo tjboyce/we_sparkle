@@ -1,9 +1,19 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0px;
-    background-image: url('../becca-k-tarter-1064087-unsplash.jpg');
+    /* background-image: url('../sparkle.jpg'); */
     background-repeat: no-repeat;
     background-size: cover;
+
+    background-color: rgba(188, 207, 224, 0.952);
+    /* background-image: linear-gradient(to right top, #2f0537, #330447, #34055a, #2e0a6e, #191384); */
+    /* background-image: linear-gradient(to right top, #6a0c7c, #680090, #6000a5, #4c00bd, #0d02d7); */
+    /* background-image: linear-gradient(to right top, #0c7c1d, #007860, #006fb8, #005df3, #0d02d7); */
+    /* background-image: linear-gradient(to right top, #0a0f0b, #002521, #003666, #0041bc, #0d02d7); */
+    /* background-image: linear-gradient(to right top, #112315, #00322e, #004076, #0046c6, #0d02d7); */
+    /* background-image: linear-gradient(to right top, #f1faee, #e4f4e7, #d7efe2, #c8e9df, #bae3dd, #a9d8d7, #9acdd1, #8bc2cc, #77b0c0, #649eb5, #538da9, #457b9d); */
+    /* background-image: linear-gradient(to right top, #101f1a, #141a12, #15150c, #140f08, #0e0806, #181010, #1e151a, #211b24, #282e3f, #204459, #045c69, #16736b); */
+    /* background-image: linear-gradient(to right top, #314647, #005160, #005982, #005da5, #005abf, #0056ba, #0053b5, #004fb0, #004a8b, #003b5d, #002a33, #021816); */
 }
 
 .alert {

@@ -56,7 +56,6 @@ class UserPage extends Component {
         service: service,
         cost: cost,
         time: time,
-
       })
     }
   }
@@ -67,9 +66,6 @@ class UserPage extends Component {
       this.setState({
         id: id,
         showFAQ: true,
-        // keyWord: keyWord,
-        // synonyms: synonyms,
-        // answer: answer,
       })
     }
   }
@@ -84,10 +80,10 @@ class UserPage extends Component {
     console.log('in saveServiceChanges and the id is', this.state.id);
     this.props.dispatch({ type: 'EDIT_SERVICE', payload: this.state })
   }
-  submitFAQ = ()=>{
+  submitFAQ = () => {
     console.log('in submitFAQ and the id is:', this.state.id);
-    this.props.dispatch ({type: 'ADD_FAQ', payload: this.state})
-    
+    this.props.dispatch({ type: 'ADD_FAQ', payload: this.state })
+
   }
 
 
@@ -106,30 +102,29 @@ class UserPage extends Component {
       </div>
     }
     else editServiceDisplay = null;
-    
+
     let FAQServiceDisplay;
-    if(this.state.showFAQ) {
-      FAQServiceDisplay= <div>
-      <input onChange={this.handleChangeFor('keyWord')} value={this.state.keyWord} placeholder='Key word' />
+    if (this.state.showFAQ) {
+      FAQServiceDisplay = <div>
+        <input onChange={this.handleChangeFor('keyWord')} value={this.state.keyWord} placeholder='Key word' />
         <input onChange={this.handleChangeFor('synonyms')} value={this.state.synonyms} placeholder='Synonyms' />
         <input onChange={this.handleChangeFor('answer')} value={this.state.answer} placeholder='Answer' />
         <button onClick={this.submitFAQ}>Add FAQ/ Submit</button>
       </div>
     }
 
-    else FAQServiceDisplay = null; 
+    else FAQServiceDisplay = null;
 
     return (
 
       <div>
         <h1 id="welcome">
-          Welcome, {this.props.user.username}!
+          Welcome, {this.props.user.username}! 
     </h1>
         <AddNewItem />
 
         <div>
           <section>
-            {/*for demo wrap*/}
             <h1 id="services">Services</h1>
             <div className="tbl-header">
               <table cellPadding={0} cellSpacing={0} border={0}>
@@ -138,7 +133,9 @@ class UserPage extends Component {
                     <th>Service</th>
                     <th>Cost</th>
                     <th>Time</th>
-                    <th>Edit/Delete/FAQ</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    <th>Add FAQ</th>
                   </tr>
                 </thead>
               </table>
@@ -153,29 +150,25 @@ class UserPage extends Component {
                       <td>{item.time.time}</td>
 
                       <td>
-                        <button onClick={this.editService([item._id, item.service.service, item.cost.cost, item.time.time])} className="editButton">Edit</button>
-
-                      <button onClick={this.deleteService(item._id)} className="deleteButton">Delete</button>
-
-                        {/* <button onClick={this.FAQService([item._id, item.shampoo.keyWord, item.shampoo.synonyms, item.shampoo.answer])} className='FAQButton'>FAQ</button> */}
-                        <button onClick={this.FAQService(item._id)} className='FAQButton'>FAQ</button>
+                        <button onClick={this.editService([item._id, item.service.service, item.cost.cost, item.time.time])} className="editButton"><i id="tableButton" class="far fa-edit"></i></button>
+                    
 
                       </td>
-
+                      <td>
+                        <button onClick={this.deleteService(item._id)} className="deleteButton"><i id= "tableButton"class="far fa-trash-alt"></i></button>
+                      </td>
+                      <td>
+                        <button onClick={this.FAQService(item._id)} className='FAQButton'><i id = "tableButton"class="far fa-comment-dots"></i></button>
+                      </td>
                     </tr>
                   ))}
-                  {/* <tr>
-                <td>Haircut</td>
-                <td>$45</td>
-                <td>45 minutes</td>
-                <td>True</td>
-              </tr> */}
+
 
                 </tbody>
               </table>
             </div>
           </section>
-          {/* follow me template */}
+
           {editServiceDisplay}
           {FAQServiceDisplay}
         </div>

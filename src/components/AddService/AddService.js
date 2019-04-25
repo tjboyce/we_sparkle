@@ -74,7 +74,7 @@ handleClick2 = () =>{
         return (
             <div>
                 <button id="Popover1" type="button" onClick={this.toggle}>
-                    Add New Service
+                    <i id="add" className="fas fa-plus"></i>
                 </button>
                 <div className="container">
                     <div id="popoverDiv" style={this.state.popoverOpen ? { display: 'inline' } : { display: 'none' }} >

@@ -1,21 +1,25 @@
 #Popover1{
-    background-color: #9c2525;
-    width: 150px;
-    height: 150px;
+    /* background-color: #9c2525;   */
+    background-color:rgb(213, 93, 93);
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     position: absolute;
-    right: 45px;
-    top: 130px;
+    /* right: 45px; */
+    margin-left: 250px;
+    /* top: 130px; */
+    top: 230px;
     cursor: pointer;
     border: none;
     background-repeat: no-repeat;
     background-position-x: 21px;
     background-position-y: 28px;
     color: white;
+    font-size: 25px;
 }
 #Popover1:hover{
  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-background-image: url('../W31b.gif');
+/* background-image: url('../W31b.gif'); */
 /* background-repeat: no-repeat */
 }
 
@@ -70,18 +74,16 @@ cursor: pointer;
 float: right;
 margin-top: 5px;
 margin-right: 5px;
-
-
-
 }
 #popoverDiv button:hover{
 background-color: #9c2525;
 box-shadow: 0 6px 20px 0 rgba(0,0,0,0.19);
-
 }
-
 .container{
     text-align: center;
     /* justify-content: center; */
- 
+}
+#add{
+    /* font-size: 25px; */
+    color: white;
 }
