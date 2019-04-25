@@ -25,6 +25,8 @@ router.get('/', rejectUnauthenticated, async (req, res) => {
 router.post('/faq', rejectUnauthenticated, async (req, res) => {
     console.log('FAQ', req.body);
     let faq = req.body
+    let synonymArray =faq.synonyms.split(' ');
+    console.log('SPENCER', synonymArray);
     await client.connect();
     const database = client.db(dbName)
     
@@ -32,7 +34,7 @@ router.post('/faq', rejectUnauthenticated, async (req, res) => {
         {"_id": mongodb.ObjectId(req.body.id) },
         {$set: {[req.body.keyWord]: {
             keyWord: req.body.keyWord, 
-            synonyms: [req.body.synonyms],
+            synonyms: synonymArray,
             answer: req.body.answer
         }}}
     );//end update
@@ -44,9 +46,8 @@ router.post('/faq', rejectUnauthenticated, async (req, res) => {
 
 router.post('/', rejectUnauthenticated, async (req, res) => {
     console.log('server post hit', req.body);
-        let synonymArray = [];
-        synonymArray.push(req.body.serviceSynonym.split(' '));
-        console.log(synonymArray);
+        let synonymArray =req.body.serviceSynonym.split(' ');
+        
         await client.connect();
         const database = client.db(dbName)
         await database.collection('services').insertOne({
