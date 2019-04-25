@@ -52,16 +52,20 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
                 synonyms: [req.body.serviceSynonym]
             },
             cost: {
-                cost: req.body.cost,
-                synonyms:['cost', 'pay', 'fee', 'much', 'price', 'pricing', 'dollar', 'dollars']
+                keyWord: 'cost',
+                synonyms:['cost', 'pay', 'fee', 'much', 'price', 'pricing', 'dollar', 'dollars'],
+                answer: req.body.cost, 
             },
             time: {
-                time: req.body.time,
-                synonyms: ['length', 'long', 'duration', 'time', 'hour', 'hours', 'minute', 'minutes']
+                keyWord: 'time',
+                synonyms: ['length', 'long', 'duration', 'time', 'hour', 'hours', 'minute', 'minutes'], 
+                answer: req.body.time, 
             },
             crueltyFree :{
-                crueltyFree: req.body.crueltyFree,
-                synonyms: ['cruelty', 'free', 'animal', 'animals', 'testing', 'tested']
+                keyWord: 'cruelty free',
+                synonyms: ['cruelty', 'free', 'animal', 'animals', 'testing', 'tested'],
+                answer: req.body.crueltyFree,
+            
             }
          
         })

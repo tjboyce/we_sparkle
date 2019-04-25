@@ -9,7 +9,7 @@ const Nav = (props) => (
   
   
     <div className="nav-right">
-      <Link to="/home" className="nav-link"> Home </Link>
+      <Link to="/home" className="nav-link"> Home <i class="fas fa-home"></i> </Link>
     
       <Link to="/" className="nav-link" >
       <button 
@@ -17,7 +17,7 @@ const Nav = (props) => (
         but call this link 'Home' if they are logged in,
         and call this link 'Login / Register' if they are not */
         onClick={() => props.dispatch({ type: 'LOGOUT' })}>
-        Logout
+          Logout <i class="fas fa-door-closed"></i>
       </button>
       </Link>
       {/* Show the link to the info page and the logout button if the user is logged in */}
@@ -31,7 +31,7 @@ const Nav = (props) => (
       )}
       {/* Always show this link since the about page is not protected */}
       <Link className="nav-link" to="/about">
-        About
+        About <i class="fas fa-info-circle"></i>
       </Link>
     </div>
   </div>
