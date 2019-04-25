@@ -18,7 +18,7 @@ class AddNewService extends Component {
         }
         else if (!this.state.time) {
             window.alert('Please enter the length of the service');
-        } 
+        }
         // else if (!this.state.synonyms) {
         //     window.alert('Please enter the serveice Synonyms');
         // }
@@ -40,16 +40,16 @@ class AddNewService extends Component {
         })
     }
 
-   
-handleClick2 = () =>{
-    console.log('checkbox checked')
-    this.setState({
-        ...this.state,
-       crueltyFree: !this.state.crueltyFree
-    })
-    console.log(this.state.crueltyFree);
-    
-}
+
+    handleClick2 = () => {
+        console.log('checkbox checked')
+        this.setState({
+            ...this.state,
+            crueltyFree: !this.state.crueltyFree
+        })
+        console.log(this.state.crueltyFree);
+
+    }
 
     constructor(props) {
         super(props);
@@ -64,9 +64,9 @@ handleClick2 = () =>{
     toggle() {
         this.setState({
             popoverOpen: !this.state.popoverOpen,
-            service:'',
-            cost:'',
-            time:'',
+            service: '',
+            cost: '',
+            time: '',
         });
     }
 
@@ -74,7 +74,7 @@ handleClick2 = () =>{
 
 
     render() {
-     
+
 
         return (
             <div>
@@ -83,24 +83,21 @@ handleClick2 = () =>{
                 </button>
                 <div className="container">
                     <div id="popoverDiv" style={this.state.popoverOpen ? { display: 'inline' } : { display: 'none' }} >
-
                         <button className="closeAddServiceButton" onClick={this.toggle}><i class="far fa-times-circle"></i></button>
                         {/* <h3>Please enter the service type, cost of service and length of time that the service takes.</h3> */}
                         <h3>WHAT TYPE OF SERVICE WOULD YOU LIKE TO ADD?</h3><input placeholder="service type" onChange={this.handleChangeFor('service')} value={this.state.service} />
-                        
+
                         <h3>OTHER KEYWORDS/SYNONYMS CLIENTS MAY USE?</h3><input placeholder="service synonym" onChange={this.handleChangeFor('serviceSynonym')} />
-                      
+
                         <h3>ENTER THE RESPONSE SPARKLE-BOT WILL GIVE WHEN ASKED ABOUT COST OF SERVICE</h3> <input id="inputResponse" placeholder="Cost: Sparkle-Bot response" type="text" onChange={this.handleChangeFor('cost')} />
-                        
+
                         <h3>ENTER THE RESPONSE SPARKLE-BOT WILL GIVE WHEN ASKED ABOUT SERVICE LENGTH</h3><input id="inputResponse" placeholder="Time: Sparkle-Bot response" onChange={this.handleChangeFor('time')} />
                         <br />
-                        <button className="addServiceButton" id="popUpButton" onClick={this.handleClick}>Add Service</button>
-                        <label><h3>CRUELTY FREE?</h3><input type="checkbox" onClick={this.handleClick2} /></label>
-
+                        <button className="addServiceButton" onClick={this.handleClick}>Add Service</button>
+                        <div className="checkBoxContainer">
+                            <label>CRUELTY FREE?</label><input type="checkbox" onClick={this.handleClick2} />
+                        </div>
                     </div>
-
-
-
                 </div>
             </div>
         );

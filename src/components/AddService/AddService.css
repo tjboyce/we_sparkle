@@ -65,12 +65,12 @@ color: black;
 }
 
 .addServiceButton{
-    margin-left: 200px;
-/* border: solid black; */
-border-radius: 20px;
-padding: 20px;
+border-radius: 30px;
+padding: 10px;
 cursor: pointer;
-margin-left: 135px;
+float: right;
+background-color: rgb(213, 93, 93);
+color: white;
 }
 
 .closeAddServiceButton{
@@ -82,6 +82,10 @@ padding: 15px;
 cursor: pointer;
 color: white;
 margin: 5px;
+}
+
+.checkBoxContainer{
+color: black;
 }
 
 #popUpButton{
