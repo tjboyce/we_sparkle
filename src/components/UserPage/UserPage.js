@@ -50,6 +50,7 @@ class UserPage extends Component {
 
   editService = ([id, service,  cost, time]) => {
     return () => {
+      console.log('editService is running');
       this.setState({
         id: id,
         showInputs: true,
@@ -77,8 +78,11 @@ class UserPage extends Component {
   }
 
   saveServiceChanges = () => {
-    console.log('in saveServiceChanges and the id is', this.state.id);
+    console.log('in saveServiceChanges and the id is', this.state);
     this.props.dispatch({ type: 'EDIT_SERVICE', payload: this.state })
+    this.setState({
+      showInputs: false,
+    })
   }
 
   cancelServiceChanges = () => {
@@ -96,6 +100,9 @@ class UserPage extends Component {
   submitFAQ = () => {
     console.log('in submitFAQ and the id is:', this.state.id);
     this.props.dispatch({ type: 'ADD_FAQ', payload: this.state })
+    this.setState({
+      showFAQ: false,
+    })
 
   }
 
@@ -164,7 +171,7 @@ class UserPage extends Component {
                     
                     <tr key={item._id}>
                       <td>{item.service.service}</td>
-                      <td>${item.cost.answer}</td>
+                      <td>{item.cost.answer}</td>
                       <td>{item.time.answer}</td>
 
                       <td>
