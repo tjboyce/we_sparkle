@@ -27,7 +27,9 @@
 
 h1 {
   font-size: 50px;
-  color: #058b75;
+  /* color: #058b75; */
+  font-family: 'Raleway', sans-serif;
+  color: white;
   text-transform: uppercase;
   font-weight: 300px;
   text-align: center;

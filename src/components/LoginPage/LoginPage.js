@@ -41,20 +41,20 @@ class LoginPage extends Component {
             {this.props.errors.loginMessage}
           </h2>
         )}
-        
+
         <form onSubmit={this.login} id="login-form">
           <h1>Login</h1>
-          
-            <label htmlFor="username">
-              Username:
+
+          <label htmlFor="username">
+            Username:
               <input
-                type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
-              />
-            </label>
-          
+              type="text"
+              name="username"
+              value={this.state.username}
+              onChange={this.handleInputChangeFor('username')}
+            />
+          </label>
+
           <div>
             <label htmlFor="password">
               Password:
@@ -74,20 +74,19 @@ class LoginPage extends Component {
               value="Log In"
             />
           </div>
-          <div id="registerButton">
           <button
             type="button"
-            className="link-button"
+            className="register-button"
             onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }) }}
           >
             Register
           </button>
-          </div>
         </form>
         
-        
-          
-        
+
+
+
+
       </div>
     );
   }
