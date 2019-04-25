@@ -87,42 +87,33 @@ router.delete('/:id', rejectUnauthenticated, async (req, res) => {
 })
 
 router.put('/:id', rejectUnauthenticated, async (req, res) => {
-    console.log('edit route hit with the :==============================================', req.body);
+    console.log('EDIT SERVICE', req.body);
+    
+    
+    
     await client.connect();
     const database = client.db(dbName);
-    await database.collection('services').findOneAndReplace(
+    // const result = await database.collection('services').find({ "_id": mongodb.ObjectId(req.body.id) }).toArray();
+    // console.log('I always get a please', result);
+    await database.collection('services').update(
         { "_id": mongodb.ObjectId(req.body.id) },
-        { "service": {
-            "service": req.body.service,
-            // "synonyms": [req.body.serviceSynonym]
-            },
-         "cost":{
-             "cost": req.body.cost,
-            //  "synonyms": [req.body.costSynonym]
-            },
-          "time":{
-              "time": req.body.time,
-            //   "synonyms": ['length', 'long', 'duration', 'time', 'hour', 'hours', 'minute', 'minutes']
-          },
-            "crueltyFree": {
-                "crueltyFree": req.body.crueltyFree,
-                // "synonyms": [],
-            },
-            // "keyword": {
-            //     "keyword": req.body.keyword,
-            //     "synonyms": [req.body.synonyms],
-            //     "answer": req.body.answer, 
-            // }
-
-         })
+    {$set: {cost: {
+            keyWord: 'cost',
+            synonyms: ['cost', 'pay', 'fee', 'much', 'price', 'pricing', 'dollar', 'dollars'],
+            answer: req.body.cost,
+        },
+        time: {
+            keyWord: 'time',
+            synonyms: ['length', 'long', 'duration', 'time', 'hour', 'hours', 'minute', 'minutes'],
+            answer: req.body.time,
+        }
+    }
+         
+        })
+       
            
     res.sendStatus(200);
 })
 
 module.exports = router;
 
-// req.body.keyword:{
-//     keyword: req.body.keyword, 
-//     synonyms: req.body.synonyms,
-//     answer: req.body.answer,
-// }

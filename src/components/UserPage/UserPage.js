@@ -48,7 +48,7 @@ class UserPage extends Component {
     }
   }
 
-  editService = ([id, service, cost, time]) => {
+  editService = ([id, service,  cost, time]) => {
     return () => {
       this.setState({
         id: id,
@@ -105,7 +105,8 @@ class UserPage extends Component {
     let editServiceDisplay;
     if (this.state.showInputs) {
       editServiceDisplay = <div id='popoverDiv'>
-        <input onChange={this.handleChangeFor('service')} value={this.state.service}></input>
+        <h1>{this.state.service}</h1>
+        {/* <h1 onChange={this.handleChangeFor('service')} value={this.state.service}></h1> */}
         <input onChange={this.handleChangeFor('cost')} value={this.state.cost}></input>
         <input onChange={this.handleChangeFor('time')} value={this.state.time}></input>
 
