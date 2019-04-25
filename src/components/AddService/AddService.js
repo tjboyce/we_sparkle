@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './AddService.css'
-import { timingSafeEqual } from 'crypto';
 
 class AddNewService extends Component {
     /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
@@ -19,7 +18,10 @@ class AddNewService extends Component {
         }
         else if (!this.state.time) {
             window.alert('Please enter the length of the service');
-        }
+        } 
+        // else if (!this.state.synonyms) {
+        //     window.alert('Please enter the serveice Synonyms');
+        // }
     }
 
     handleChangeFor = (property) => (event) => {
@@ -61,7 +63,10 @@ handleClick2 = () =>{
 
     toggle() {
         this.setState({
-            popoverOpen: !this.state.popoverOpen
+            popoverOpen: !this.state.popoverOpen,
+            service:'',
+            cost:'',
+            time:'',
         });
     }
 
@@ -80,15 +85,22 @@ handleClick2 = () =>{
                     <div id="popoverDiv" style={this.state.popoverOpen ? { display: 'inline' } : { display: 'none' }} >
                         <button id="exitButton" onClick={this.toggle}>Exit</button>
                         <h3>Please enter the service type, cost of service and length of time that the service takes.</h3>
+
                         <input placeholder="service type" onChange={this.handleChangeFor('service')} value={this.state.service} />
-                        <input placeholder="service synonym" onChange={this.handleChangeFor('serviceSynonym')} />
+
+                        <input placeholder="service synonym" onChange={this.handleChangeFor('serviceSynonym')} 
+                            />
+                            
                         <br />
-                        <input placeholder="cost" type="number" onChange={this.handleChangeFor('cost')} />
+
+                        <input placeholder="cost" type="number" onChange={this.handleChangeFor('cost')} value={this.state.cost}/>
                         <br />
-                        <input placeholder="length" onChange={this.handleChangeFor('time')} />
+                        <input placeholder="length" onChange={this.handleChangeFor('time')} value={this.state.time}/>
                         <br />
-                        <button id="addServiceButton" onClick={this.handleClick}>Add Service</button>
+
                         <label>Cruelty Free?<input type="checkbox" onClick={this.handleClick2} /></label>
+
+                        <button id="addServiceButton" onClick={this.handleClick}>Add Service</button>
                     </div>
 
 
