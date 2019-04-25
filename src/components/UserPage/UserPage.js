@@ -86,6 +86,12 @@ class UserPage extends Component {
       showInputs: false,
     })
   }
+
+  cancelFAQChanges = () => {
+    this.setState({
+      showFAQ: false,
+    })
+  }
   
   submitFAQ = () => {
     console.log('in submitFAQ and the id is:', this.state.id);
@@ -112,11 +118,13 @@ class UserPage extends Component {
 
     let FAQServiceDisplay;
     if (this.state.showFAQ) {
-      FAQServiceDisplay = <div>
+      FAQServiceDisplay = <div id='popoverDiv'>
         <input onChange={this.handleChangeFor('keyWord')} value={this.state.keyWord} placeholder='Key word' />
         <input onChange={this.handleChangeFor('synonyms')} value={this.state.synonyms} placeholder='Synonyms' />
         <input onChange={this.handleChangeFor('answer')} value={this.state.answer} placeholder='Answer' />
-        <button onClick={this.submitFAQ}>Add FAQ/ Submit</button>
+
+        <button id="addServiceButton" onClick={this.submitFAQ}>Add FAQ/ Submit</button>
+        <button id="exitButton" onClick={this.cancelFAQChanges}>Cancel</button>
       </div>
     }
 
