@@ -4,8 +4,10 @@ body {
     /* background-image: url('../sparkle.jpg'); */
     background-repeat: no-repeat;
     background-size: cover;
+        background-color: rgba(224, 233, 240, 0.952);
 
-    background-color: rgba(188, 207, 224, 0.952);
+
+    /* background-color: rgba(188, 207, 224, 0.952); */
     /* background-image: linear-gradient(to right top, #2f0537, #330447, #34055a, #2e0a6e, #191384); */
     /* background-image: linear-gradient(to right top, #6a0c7c, #680090, #6000a5, #4c00bd, #0d02d7); */
     /* background-image: linear-gradient(to right top, #0c7c1d, #007860, #006fb8, #005df3, #0d02d7); */
