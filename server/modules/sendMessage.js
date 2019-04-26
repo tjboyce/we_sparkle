@@ -113,7 +113,7 @@ handleResponse = () => {
     if (!service && !query) {
         return null;
     } else if ( !service && query ) {
-        return `It looks like you're asking a question about ${query}; which service would you like to know about?`
+        return `It looks like you're asking a question about ${query}; which service would you like to know about? If you've seen this message already I might not have an answer for you in which case please reach out to Fantastic Glams at (555) 867-5309!`
     } else if (service && !query) {
         if (service === 'appointment') {
             return serviceDetails.appointment.service.answer;
