@@ -48,7 +48,7 @@ class UserPage extends Component {
     }
   }
 
-  editService = ([id, service,  cost, time]) => {
+  editService = ([id, service, cost, time]) => {
     return () => {
       console.log('editService is running');
       this.setState({
@@ -96,7 +96,7 @@ class UserPage extends Component {
       showFAQ: false,
     })
   }
-  
+
   submitFAQ = () => {
     console.log('in submitFAQ and the id is:', this.state.id);
     this.props.dispatch({ type: 'ADD_FAQ', payload: this.state })
@@ -112,33 +112,49 @@ class UserPage extends Component {
     let editServiceDisplay;
     if (this.state.showInputs) {
       editServiceDisplay = <div id='popoverDiv'>
-        <button id="exitButton" onClick={this.cancelServiceChanges}><i class="far fa-times-circle"></i></button> 
-        <h1 className = "serviceName">{this.state.service}</h1>
-        {/* <h1 onChange={this.handleChangeFor('service')} value={this.state.service}></h1> */}
-      <div className = "container">
-      <h3>COST RESPONSE</h3>
-        <input onChange={this.handleChangeFor('cost')} value={this.state.cost}></input>
+        <button id="exitButton" onClick={this.cancelServiceChanges}><i class="far fa-times-circle"></i></button>
         <br/>
-        <h3>TIME RESPONSE</h3>
-        <input onChange={this.handleChangeFor('time')} value={this.state.time}></input>
-      </div>
+        <br />
+
+        <h1 className="serviceName">{this.state.service}</h1>
+        <div className="container">
+          <h3>COST RESPONSE</h3>
+          <input onChange={this.handleChangeFor('cost')} value={this.state.cost}></input>
+          <br />
+          <h3>TIME RESPONSE</h3>
+          <input onChange={this.handleChangeFor('time')} value={this.state.time}></input>
+        </div>
 
         <button id="addServiceButton" onClick={this.saveServiceChanges}>Save</button>
-        {/* <button id="exitButton" onClick={this.cancelServiceChanges}>Cancel</button> */}
       </div>
     }
     else editServiceDisplay = null;
 
+    
+    
     let FAQServiceDisplay;
     if (this.state.showFAQ) {
+      
       FAQServiceDisplay = <div id='popoverDiv'>
-        <input onChange={this.handleChangeFor('keyWord')} value={this.state.keyWord} placeholder='Key word' />
-        <input onChange={this.handleChangeFor('synonyms')} value={this.state.synonyms} placeholder='Synonyms' />
-        <input onChange={this.handleChangeFor('answer')} value={this.state.answer} placeholder='Answer' />
+        <button id="exitButton" onClick={this.cancelFAQChanges}><i class="far fa-times-circle"></i></button>
+        <br/>
+        <br/>
+        <div className="container">
 
-        <button id="addServiceButton" onClick={this.submitFAQ}>Add FAQ/ Submit</button>
-        <button id="exitButton" onClick={this.cancelFAQChanges}>Cancel</button>
-      </div>
+          <h3>KEYWORDS</h3>
+          <input onChange={this.handleChangeFor('keyWord')} value={this.state.keyWord} placeholder='Keyword' />
+          <br />
+          <h3>OTHER KEYWORDS/SYNONYMS CLIENTS MAY USE?</h3>
+          <input onChange={this.handleChangeFor('synonyms')} value={this.state.synonyms} placeholder='Synonyms' />
+          <br />
+          <h3>ENTER THE RESPONSE SPARKLE-BOT WILL GIVE WHEN ASKED ABOUT KEYWORD</h3>
+          <input onChange={this.handleChangeFor('answer')} value={this.state.answer} placeholder='Answer' />
+          <br/>
+          <button id="addServiceButton" onClick={this.submitFAQ}>Submit</button>
+          </div>
+        
+        </div>
+
     }
 
     else FAQServiceDisplay = null;
@@ -147,7 +163,7 @@ class UserPage extends Component {
 
       <div>
         <h1 id="welcome">
-          Welcome, {this.props.user.username}! 
+          Welcome, {this.props.user.username}!
     </h1>
         <AddNewItem />
 
@@ -172,8 +188,8 @@ class UserPage extends Component {
               <table cellPadding={0} cellSpacing={0} border={0}>
                 <tbody>
                   {this.props.adminReducer.map((item) => (
-                    
-                    
+
+
                     <tr key={item._id}>
                       <td>{item.service.service}</td>
                       <td>{item.cost.answer}</td>
@@ -181,21 +197,21 @@ class UserPage extends Component {
 
                       <td>
                         <button onClick={this.editService([item._id, item.service.service, item.cost.answer, item.time.answer])} className="editButton"><i id="tableButton" class="far fa-edit"></i></button>
-                    
+
 
                       </td>
                       <td>
-                        <button onClick={this.deleteService(item._id)} className="deleteButton"><i id= "tableButton"class="far fa-trash-alt"></i></button>
+                        <button onClick={this.deleteService(item._id)} className="deleteButton"><i id="tableButton" class="far fa-trash-alt"></i></button>
                       </td>
                       <td>
-                        <button onClick={this.FAQService(item._id)} className='FAQButton'><i id = "tableButton"class="far fa-comment-dots"></i></button>
+                        <button onClick={this.FAQService(item._id)} className='FAQButton'><i id="tableButton" class="far fa-comment-dots"></i></button>
                       </td>
-                        
+
                     </tr>
-                   
+
                   ))}
 
-                    
+
                 </tbody>
               </table>
             </div>

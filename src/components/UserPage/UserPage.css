@@ -41,11 +41,9 @@ h1 {
 
 #services {
   font-size: 35px;
-  /* color: black; */
   color: rgb(213, 93, 93);
   text-transform: uppercase;
   font-weight: 300px;
-  /* text-align: center; */
   text-align: left;
   margin-bottom: 15px;
   font-family: 'Raleway', sans-serif;
@@ -97,6 +95,7 @@ margin-right: 5px;
     transform: translate(-50%, -50%);
     
 }
+
 #popoverDiv button:hover{
 /* background-color: #9c2525; */
 box-shadow: 0 6px 20px 0 rgba(0,0,0,0.19);
@@ -109,6 +108,10 @@ box-shadow: 0 6px 20px 0 rgba(0,0,0,0.19);
    
     margin-bottom: -2px;
 }
+.container input{
+  margin-bottom: -25px;
+}
+
 /* Table Styling */
 
 table {
@@ -120,15 +123,14 @@ table {
 }
 
 .tbl-header {
-  /* background: rgba(204, 204, 204, 0.5); */
-  /* background:  #058b75; */
+ 
   background: #4267b2;
 }
 
 #tableButton {
   color: rgb(37, 33, 33);
   text-decoration: none;
-  /* box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); */
+ 
 }
 
 .tbl-content {
@@ -137,8 +139,7 @@ table {
   margin-top: 0px;
   border: 1px solid#0183ff;
   font-weight: 400;
-  /* background: rgba(204, 204, 204, 0.897) */
-  /* background:#7cf5eff5; */
+ 
   background: #e9ebee;
 }
 
@@ -147,7 +148,7 @@ th {
   text-align: left;
   font-weight: 500;
   font-size: 20px;
-  /* color: black; */
+
   color: white;
   text-transform: uppercase;
 }
