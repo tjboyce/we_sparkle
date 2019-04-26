@@ -59,18 +59,16 @@
 }
 
 #popoverDiv h3{
-    /* margin: 20px ; */
 padding-top: 20px;
 color: black;
 }
 
 .addServiceButton{
     margin-left: 200px;
-/* border: solid black; */
-border-radius: 20px;
-padding: 20px;
-cursor: pointer;
-margin-left: 135px;
+    border-radius: 20px;
+    padding: 20px;
+    cursor: pointer;
+    margin-left: 135px;
 
 }
 
@@ -82,7 +80,7 @@ border-radius: 20px;
 padding: 15px;
 cursor: pointer;
 float: right;
-margin-top: 5px;
+margin-top: 10px;
 margin-right: 5px;
 }
 #popoverDiv button:hover{
@@ -92,6 +90,9 @@ box-shadow: 0 6px 20px 0 rgba(0,0,0,0.19);
 .container{
     text-align: center;
     /* justify-content: center; */
+}
+.container input{
+      margin-bottom: -25px;
 }
 #add{
     /* font-size: 25px; */
