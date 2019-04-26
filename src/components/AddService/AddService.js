@@ -57,7 +57,7 @@ class AddNewService extends Component {
         this.toggle = this.toggle.bind(this);
         this.state = {
             popoverOpen: false,
-            crueltyFree: false
+          
         };
     }
 
@@ -95,7 +95,7 @@ class AddNewService extends Component {
                         
                         <h3>ENTER THE RESPONSE SPARKLE-BOT WILL GIVE WHEN ASKED ABOUT SERVICE LENGTH</h3><input id="inputResponse" placeholder="Time: Sparkle-Bot response" onChange={this.handleChangeFor('time')} />
                         <br />
-                        <h3>CRUELTY FREE?</h3><input placeholder = "yes/no"  onClick={this.handleChangeFor ('crueltyFree')} />
+                        <h3>CRUELTY FREE?</h3><input placeholder = "yes/no"  onChange={this.handleChangeFor ('crueltyFree')} />
                         <br/>
                         <button className="addServiceButton" id="popUpButton" onClick={this.handleClick}>Add Service</button>
                         {/* <label><h3>CRUELTY FREE?</h3><input type="text" onClick={this.handleClick2} /></label> */}
