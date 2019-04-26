@@ -84,8 +84,8 @@ getIntentWeight = (intent, textArray) => {                                  //ta
     let weight = 0;                                                         //sets initial weight to 0.
     textArray.forEach(word => {                                             //loop will cycle through each word in textArray.
         word = word.replace(/[^a-zA-Z0-9]/g, '');
-        console.log('synonym check:', intents[intent].synonyms) //removes any special characters (!, @, ?, $, etc.) from the word.
-        if (intents[intent].synonyms.includes(word)) {                        //compares word to the list of synonyms for the specified question (intent).
+        console.log('synonym check:', intents[intent].synonyms)             //removes any special characters (!, @, ?, $, etc.) from the word.
+        if (intents[intent].synonyms.includes(word)) {                      //compares word to the list of synonyms for the specified question (intent).
             weight++;                                                       //if the word matches add one to weight.
         }
     });
@@ -115,6 +115,9 @@ handleResponse = () => {
     } else if ( !service && query ) {
         return `It looks like you're asking a question about ${query}; which service would you like to know about? If you've seen this message already SparkleBot might not have an answer for you. If that's the case please reach out to Fantastic Glams at (555) 867-5309. Thank you!`
     } else if (service && !query) {
+        if (service === 'appointment') {
+            return serviceDetails.appointment.service.answer;
+        }
         return `It looks like you're asking about our ${service} service; what would you like to know?`
     } else {
         return serviceDetails[service][query].answer;

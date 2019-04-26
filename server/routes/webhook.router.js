@@ -57,6 +57,14 @@ router.post('/', async (req, res) => {
     const database = client.db(dbName);
     const result = await database.collection('services').find({}).toArray();
     const thisObject = result;
+    console.log('This is the return fom DB:', thisObject)
+    thisObject.push({
+        service: {
+            service: 'appointment',
+            synonyms: ['appointment', 'appt', 'sched', 'schedule', 'reservation'],
+            answer: `To book an appointment please us the 'Book Appointment' button and follow the prompts. We look forward to seeing you soon!` 
+        }
+    })
 
     // Checks this is an event from a page subscription
     if (body.object === 'page') {
