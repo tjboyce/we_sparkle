@@ -81,29 +81,24 @@ class AddNewService extends Component {
                 <button id="Popover1" type="button" onClick={this.toggle}>
                     <i id="add" className="fas fa-plus"></i>
                 </button>
+                
                 <div className="container">
+                    
                     <div id="popoverDiv" style={this.state.popoverOpen ? { display: 'inline' } : { display: 'none' }} >
-
                         <button id="popUpButton" onClick={this.toggle}><i class="far fa-times-circle"></i></button>
                         <br />
-                        {/* <h3>Please enter the service type, cost of service and length of time that the service takes.</h3> */}
                         <h3>WHAT TYPE OF SERVICE WOULD YOU LIKE TO ADD?</h3><input placeholder="service type" onChange={this.handleChangeFor('service')} />
                         
                         <h3>OTHER KEYWORDS/SYNONYMS CLIENTS MAY USE?</h3><input placeholder="service synonym" onChange={this.handleChangeFor('serviceSynonym')} />
                       
                         <h3>ENTER THE RESPONSE SPARKLE-BOT WILL GIVE WHEN ASKED ABOUT COST OF SERVICE</h3> <input id="inputResponse" placeholder="Cost: Sparkle-Bot response" type="text" onChange={this.handleChangeFor('cost')} />
-                        
                         <h3>ENTER THE RESPONSE SPARKLE-BOT WILL GIVE WHEN ASKED ABOUT SERVICE LENGTH</h3><input id="inputResponse" placeholder="Time: Sparkle-Bot response" onChange={this.handleChangeFor('time')} />
                         <br />
                         <h3>CRUELTY FREE?</h3><input placeholder = "yes/no"  onChange={this.handleChangeFor ('crueltyFree')} />
                         <br/>
                         <button className="addServiceButton" id="popUpButton" onClick={this.handleClick}>Add Service</button>
-                        {/* <label><h3>CRUELTY FREE?</h3><input type="text" onClick={this.handleClick2} /></label> */}
 
                     </div>
-
-
-
                 </div>
             </div>
         );
