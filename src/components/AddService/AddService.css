@@ -59,18 +59,16 @@
 }
 
 #popoverDiv h3{
-    /* margin: 20px ; */
 padding-top: 20px;
 color: black;
 }
 
 .addServiceButton{
     margin-left: 200px;
-/* border: solid black; */
-border-radius: 20px;
-padding: 20px;
-cursor: pointer;
-margin-left: 135px;
+    border-radius: 20px;
+    padding: 20px;
+    cursor: pointer;
+    margin-left: 135px;
 
 }
 

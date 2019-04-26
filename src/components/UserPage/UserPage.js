@@ -112,14 +112,19 @@ class UserPage extends Component {
     let editServiceDisplay;
     if (this.state.showInputs) {
       editServiceDisplay = <div id='popoverDiv'>
-        <h1>{this.state.service}</h1>
+        <button id="exitButton" onClick={this.cancelServiceChanges}><i class="far fa-times-circle"></i></button> 
+        <h1 className = "serviceName">{this.state.service}</h1>
         {/* <h1 onChange={this.handleChangeFor('service')} value={this.state.service}></h1> */}
+      <div className = "container">
+      <h3>COST RESPONSE</h3>
         <input onChange={this.handleChangeFor('cost')} value={this.state.cost}></input>
+        <br/>
+        <h3>TIME RESPONSE</h3>
         <input onChange={this.handleChangeFor('time')} value={this.state.time}></input>
-
+      </div>
 
         <button id="addServiceButton" onClick={this.saveServiceChanges}>Save</button>
-        <button id="exitButton" onClick={this.cancelServiceChanges}>Cancel</button>
+        {/* <button id="exitButton" onClick={this.cancelServiceChanges}>Cancel</button> */}
       </div>
     }
     else editServiceDisplay = null;
