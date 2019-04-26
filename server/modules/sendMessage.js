@@ -113,7 +113,7 @@ handleResponse = () => {
     if (!service && !query) {
         return null;
     } else if ( !service && query ) {
-        return `It looks like you're asking a question about ${query}; which service would you like to know about?`
+        return `It looks like you're asking a question about ${query}; which service would you like to know about? If you've seen this message already SparkleBot might not have an answer for you. If that's the case please reach out to Fantastic Glams at (555) 867-5309. Thank you!`
     } else if (service && !query) {
         return `It looks like you're asking about our ${service} service; what would you like to know?`
     } else {
