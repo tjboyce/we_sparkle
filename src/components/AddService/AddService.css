@@ -22,10 +22,25 @@
 
 }
 
+.editServicePopover {
+ background-color: rgb(211, 211, 211);
+    width: 40%;
+    height: 50%;
+    box-shadow: 0px 0px 0px 1000px rgba(119, 117, 117, 0.541);
+    display: inline-block;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    
+}
+
 #popoverDiv{
     background-color: rgb(211, 211, 211);
-    width: 900px;
-    height: 600px;
+    width: 60%;
+    height: 60%;
     box-shadow: 0px 0px 0px 1000px rgba(119, 117, 117, 0.541);
     display: inline-block;
     margin: 0;
@@ -92,6 +107,7 @@ color: black;
 
 .container input{
       margin-bottom: -25px;
+      width: 70%
     }
 
 

@@ -111,7 +111,9 @@ class UserPage extends Component {
     console.log('this is the state', this.state);
     let editServiceDisplay;
     if (this.state.showInputs) {
-      editServiceDisplay = <div id='popoverDiv'>
+      editServiceDisplay = <div className="editServicePopover"
+      // id='popoverDiv'
+      >
         <button id="exitButton" onClick={this.cancelServiceChanges}><i class="far fa-times-circle"></i></button>
         <br/>
         <br />
