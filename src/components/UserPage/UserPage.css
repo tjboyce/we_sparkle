@@ -56,8 +56,8 @@ padding: 10px;
 cursor: pointer;
 float: right;
 font-size: 15px;
-/* margin-right: 10px; */
-/* margin-top: 25px; */
+margin-right: 10px;
+margin-top: 25px;
 }
 
 #exitButton{
@@ -73,7 +73,7 @@ font-size: 15px;
 }
 
 #popoverDiv input {
-    width: 200px;
+    width: 70%;
     display: block;
     border: solid 1px;
     outline: none;
@@ -87,8 +87,8 @@ font-size: 15px;
 }
 #popoverDiv{
     background-color: rgb(211, 211, 211);
-    width: 900px;
-    height: 600px;
+    width: 60%;
+    height: 60%;
     box-shadow: 0px 0px 0px 1000px rgba(119, 117, 117, 0.541);
     display: inline-block;
     margin: 0;
