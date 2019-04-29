@@ -25,7 +25,7 @@
 .editServicePopover {
  background-color: rgb(211, 211, 211);
     width: 40%;
-    height: 50%;
+    height: 35%;
     box-shadow: 0px 0px 0px 1000px rgba(119, 117, 117, 0.541);
     display: inline-block;
     margin: 0;
@@ -54,7 +54,7 @@
 
 .popoverDiv input {
     width: 70%;
-  
+    height: 5%;
     display: block;
    
     border: solid 1px;
@@ -79,8 +79,9 @@ color: black;
 
 .addServiceButton{
     border-radius: 20px;
-    padding: 20px;
     cursor: pointer;
+    float: right;
+    margin: 10px;
 }
 
 #popUpButton{
