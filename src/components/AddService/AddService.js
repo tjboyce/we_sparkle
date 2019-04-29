@@ -84,7 +84,7 @@ class AddNewService extends Component {
                 
                 <div className="container">
                     
-                    <div id="popoverDiv" style={this.state.popoverOpen ? { display: 'inline' } : { display: 'none' }} >
+                    <div className="popoverDiv" style={this.state.popoverOpen ? { display: 'inline' } : { display: 'none' }} >
                         <button id="popUpButton" onClick={this.toggle}><i class="far fa-times-circle"></i></button>
                         <br />
                         <h3>WHAT TYPE OF SERVICE WOULD YOU LIKE TO ADD?</h3><input placeholder="service type" onChange={this.handleChangeFor('service')} />
@@ -96,7 +96,7 @@ class AddNewService extends Component {
                         <br />
                         <h3>CRUELTY FREE?</h3><input placeholder = "yes/no"  onChange={this.handleChangeFor ('crueltyFree')} />
                         <br/>
-                        <button className="addServiceButton" id="popUpButton" onClick={this.handleClick}>Add Service</button>
+                        <button className="addServiceButton" onClick={this.handleClick}>Add Service</button>
 
                     </div>
                 </div>

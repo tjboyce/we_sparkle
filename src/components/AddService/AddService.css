@@ -37,7 +37,7 @@
     
 }
 
-#popoverDiv{
+.popoverDiv{
     background-color: rgb(211, 211, 211);
     width: 60%;
     height: 60%;
@@ -52,8 +52,8 @@
     
 }
 
-#popoverDiv input {
-    width: 200px;
+.popoverDiv input {
+    width: 70%;
   
     display: block;
    
@@ -68,21 +68,19 @@
 
 }
 #inputResponse{
-    width: 900px;
-    height: 50px;
+    width: 70%;
+    height: 10%;
 }
 
-#popoverDiv h3{
+.popoverDiv h3{
 padding-top: 20px;
 color: black;
 }
 
 .addServiceButton{
-    margin-left: 200px;
     border-radius: 20px;
     padding: 20px;
     cursor: pointer;
-    margin-left: 135px;
 }
 
 #popUpButton{
@@ -96,7 +94,7 @@ color: black;
     margin-right: 5px;
     }
 
-#popoverDiv button:hover{
+.popoverDiv button:hover{
     box-shadow: 0 6px 20px 0 rgba(0,0,0,0.19);
     }
 
@@ -104,11 +102,11 @@ color: black;
     text-align: center;
    }
 
-
+/* 
 .container input{
       margin-bottom: -25px;
       width: 70%
-    }
+    } */
 
 
 #add{
