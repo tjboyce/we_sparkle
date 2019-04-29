@@ -15,7 +15,7 @@ let query = '';
 //handleService identifies the service the user is talking about. 
 handleService = (text, serviceObject) => {                                  //text is the string the user inputs in the facebook message.
     serviceObject.forEach(object => {   
-        serviceDetails[object.service.service] = object;                    //loops through the incoming object to format it correctly for this page's logic.
+        serviceDetails[object.service.service.toLowerCase()] = object;                    //loops through the incoming object to format it correctly for this page's logic.
     });                                                                     //sets serviceDetails equal to the incoming object queried from the .post coming from Facebook.
     services = servicesObject();                                            //sets services object based on the servicesObject function.
     intents = intentsObject();                                              //sets intents object based on the intentsObject function.
@@ -26,7 +26,7 @@ handleService = (text, serviceObject) => {                                  //te
         word = word.replace(/[^a-zA-Z0-9]/g, '');                           //removes any special characters (!, @, ?, $, etc.) from the word.
         Object.keys(services).forEach(serviceKeyword =>{                    //loops through each service in services.
             services[serviceKeyword].forEach(synonym => {                   //loops through all the synonyms for each service.
-                if (word == synonym.toLowerCase()) {                        //if the input word matches a service synonym it will set that as the service
+                if (word === synonym.toLowerCase()) {                        //if the input word matches a service synonym it will set that as the service
                     service = serviceKeyword.toLowerCase()                  
                 }
             })
@@ -115,11 +115,12 @@ handleResponse = () => {
     } else if ( !service && query ) {
         return `It looks like you're asking a question about ${query}; which service would you like to know about? If you've seen this message already SparkleBot might not have an answer for you. If that's the case please reach out to Fantastic Glams at (555) 867-5309. Thank you!`
     } else if (service && !query) {
-        if (service === 'appointment') {
-            return serviceDetails.appointment.service.answer;
+        if (service == 'appointment') {
+            return serviceDetails.appointment.service.service.answer;
         }
-        return `It looks like you're asking about our ${service} service; what would you like to know?`
+        return `It looks like you're asking about our ${service} service; what would you like to know? If you've seen this message already SparkleBot might not have an answer for you. If that's the case please reach out to Fantastic Glams at (555) 867-5309. Thank you!`
     } else {
+        console.log(serviceDetails[service][query].answer)
         return serviceDetails[service][query].answer;
     }
 };
