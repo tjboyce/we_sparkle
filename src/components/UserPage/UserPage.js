@@ -137,7 +137,7 @@ class UserPage extends Component {
     let FAQServiceDisplay;
     if (this.state.showFAQ) {
       
-      FAQServiceDisplay = <div id='popoverDiv'>
+      FAQServiceDisplay = <div className="FAQpopover">
         <button id="exitButton" onClick={this.cancelFAQChanges}><i class="far fa-times-circle"></i></button>
         <br/>
         <br/>
