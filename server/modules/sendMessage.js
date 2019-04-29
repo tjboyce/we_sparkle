@@ -120,7 +120,7 @@ handleResponse = () => {
         return `It looks like you're asking a question about ${query}; which service would you like to know about? If you've seen this message already SparkleBot might not have an answer for you. If that's the case please reach out to Fantastic Glams at (555) 867-5309. Thank you!`
     } else if (service && !query) {
         if (service == 'appointment') {
-            return `To book an appointment please us the 'Book Appointment' button and follow the prompts. We look forward to seeing you soon!`;
+            return `To book an appointment please use the 'Book Appointment' button and follow the prompts. We look forward to seeing you soon!`;
         }
         return `It looks like you're asking about our ${service} service; what would you like to know? If you've seen this message already SparkleBot might not have an answer for you. If that's the case please reach out to Fantastic Glams at (555) 867-5309. Thank you!`
     } else {
