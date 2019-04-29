@@ -29,14 +29,14 @@ class AddNewService extends Component {
 
         this.setState({
             ...this.state,
-            [property]: event.target.value.toLowerCase(),
+            [property]: event.target.value,
         })
     }
 
     handleSynonym = (property) => (event) => {
         this.setState({
             ...this.state,
-            [property]: event.target.value. toLowerCase(),
+            [property]: event.target.value,
         })
     }
 
