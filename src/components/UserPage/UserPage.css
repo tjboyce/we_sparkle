@@ -99,6 +99,29 @@ font-size: 15px;
     transform: translate(-50%, -50%);
     
 }
+.FAQpopover {
+  height: 40%;
+  width: 50%;
+  color: black;
+     top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 0px 0px 1000px rgba(119, 117, 117, 0.541);
+    background-color: rgb(211, 211, 211);
+    display: inline-block;
+    margin: 0;
+    position: absolute;
+}
+
+.FAQpopover input {
+  margin: 15px;
+  text-align: center;
+}
+
+.FAQpopover h3 {
+  margin: 15px;
+}
 
 #popoverDiv button:hover{
 /* background-color: #9c2525; */
