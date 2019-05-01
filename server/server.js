@@ -28,7 +28,7 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
-app.use('/', webhook);
+app.use('/webhook', webhook);
 app.use('/admin', adminRouter)
 
 // Serve static files
