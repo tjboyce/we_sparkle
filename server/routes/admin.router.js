@@ -4,7 +4,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 
 const mongodb = require('mongodb')
 const MongoClient = mongodb.MongoClient;
-const dbName = "sparkle"
+const dbName = "we-sparkle"
 const url = process.env.MONGODB_URI;
 const client = new MongoClient(url, { useNewUrlParser: true })
 const ObjectId = require('mongodb').ObjectID;
