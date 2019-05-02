@@ -23,7 +23,6 @@ router.get('/', rejectUnauthenticated, async (req, res) => {
 })
 
 router.post('/faq', rejectUnauthenticated, async (req, res) => {
-    console.log('FAQ', req.body);
     let faq = req.body
     let synonymArray =faq.synonyms.split(' ');
     console.log('SPENCER', synonymArray);
@@ -47,7 +46,6 @@ router.post('/faq', rejectUnauthenticated, async (req, res) => {
 router.post('/', rejectUnauthenticated, async (req, res) => {
     console.log('server post hit', req.body);
         let synonymArray =req.body.serviceSynonym.split(' ');
-        
         await client.connect();
         const database = client.db(dbName)
         await database.collection('services').insertOne({
@@ -78,23 +76,16 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
 
 router.delete('/:id', rejectUnauthenticated, async (req, res) => {
     let reqId = req.params.id;
-    console.log('we are deleting id', reqId);
     await client.connect();
-
     const database = client.db(dbName);
     await database.collection('services').findOneAndDelete({ "_id": mongodb.ObjectId(reqId) });
     res.sendStatus(200);
 })
 
 router.put('/:id', rejectUnauthenticated, async (req, res) => {
-    console.log('EDIT SERVICE', req.body);
-    
-    
     
     await client.connect();
     const database = client.db(dbName);
-    // const result = await database.collection('services').find({ "_id": mongodb.ObjectId(req.body.id) }).toArray();
-    // console.log('I always get a please', result);
     await database.collection('services').update(
         { "_id": mongodb.ObjectId(req.body.id) },
     {$set: {cost: {
