@@ -5,7 +5,7 @@ require('../modules/database');
 
 const mongodb = require('mongodb')
 const MongoClient = mongodb.MongoClient;
-const dbName = "sparkle"
+const dbName = "we-sparkle"
 const url = process.env.MONGODB_URI
 const client = new MongoClient(url, {
     useNewUrlParser: true
